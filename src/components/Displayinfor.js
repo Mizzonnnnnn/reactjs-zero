@@ -2,12 +2,21 @@ import React from "react";
 
 class Displayinfor extends React.Component {
     render() {
-        const { age, name } = this.props;
+        //destructuring array/object
+        const { listUsers } = this.props;
+        console.log(listUsers)
         //props => viet tac properties
         return (
             <div>
-                <div>My name is {name}</div>
-                <div>My age is {age}</div>
+                {listUsers.map((user, index) => {
+                    return (
+                        <div key={user.id}>
+                            <div>My name is {user.name}</div>
+                            <div>My age is {user.age}</div>
+                            <hr />
+                        </div>
+                    )
+                })}
             </div>
         )
     }
