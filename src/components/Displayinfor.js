@@ -1,4 +1,6 @@
 import React from "react";
+import './DisplayInfor.scss';
+import logo from './../logo.svg'
 
 class Displayinfor extends React.Component {
     state = {
@@ -12,9 +14,10 @@ class Displayinfor extends React.Component {
     render() {
         //destructuring array/object
         const { listUsers } = this.props;
+        // console.log(">>>> check props:: ", this.props)
         //props => viet tac properties
         return (
-            <div>
+            <div className="display-infor-container">
                 <div>
                     <span onClick={() => { this.handleShowHide() }}>
                         {this.state.isShowListUser === true ? "Hide list users" : "Show list users"}
@@ -22,20 +25,25 @@ class Displayinfor extends React.Component {
                 </div>
                 {
                     this.state.isShowListUser &&
-                    <div>
+                    <>
                         {listUsers.map((user, index) => {
                             return (
                                 <div key={user.id} className={+user.age < 17 ? "green" : "red"}>
-                                    <div>My name is {user.name}</div>
-                                    <div>My age is {user.age}</div>
-                                    <hr />
+                                    <div>
+                                        <div>My name is {user.name}</div>
+                                        <div>My age is {user.age}</div>
+                                    </div>
+
+                                    <div>
+                                        <button onClick={() => { this.props.handleDeleteUser(user.id) }}>de lét </button>
+                                    </div>
                                 </div>
+
+
                             )
                         })}
-                    </div>
+                    </>
                 }
-
-
             </div>
         )
     }
