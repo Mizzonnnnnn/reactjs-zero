@@ -3,8 +3,8 @@ import React from "react";
 
 class AddUserinfor extends React.Component {
     state = {
-        name: "Mizzon",
-        age: 19,
+        name: "",
+        age: "",
         address: "HCM"
     }
     handleClick(event) {
@@ -36,26 +36,26 @@ class AddUserinfor extends React.Component {
 
     handleOnsubmit = (event) => {
         event.preventDefault();
-        console.log(this.state)
 
         this.props.handleAddNewUser({
             id: Math.floor((Math.random() * 100) + 1) + "-random",
             name: this.state.name,
-            age: this.state.age,
-
+            age: this.state.age
         })
     }
     render() {
         return (
             <div>
-                My name is {this.state.name} and I'm {this.state.age}
-                <label>Your Name: </label>
+                My name is {this.state.name} and I'm from {this.state.address}
+
                 <form onSubmit={(event) => this.handleOnsubmit(event)}>
+                    <label>Your Name: </label>
                     <input
                         value={this.state.name}
                         type="text"
                         onChange={(event) => this.handleOnchangeInput(event)}
                     />
+                    <label>Your Age: </label>
                     <input
                         value={this.state.age}
                         type="text"

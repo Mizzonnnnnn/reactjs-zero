@@ -24,7 +24,6 @@ class Displayinfor extends React.Component {
                     this.state.isShowListUser &&
                     <div>
                         {listUsers.map((user, index) => {
-                            console.log("Check map user >>>: ")
                             return (
                                 <div key={user.id} className={+user.age < 17 ? "green" : "red"}>
                                     <div>My name is {user.name}</div>
