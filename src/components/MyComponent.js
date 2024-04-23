@@ -2,7 +2,7 @@
 // function component
 
 import React from "react";
-import Userinfor from "./Userinfor";
+import AddUserinfor from "./AddUserinfor";
 import Displayinfor from "./Displayinfor";
 
 class MyComponent extends React.Component {
@@ -14,7 +14,11 @@ class MyComponent extends React.Component {
         ]
     }
 
-
+    handleAddNewUser = (usersObj) => {
+        this.setState({
+            listUsers: [usersObj, ...this.state.listUsers]
+        })
+    }
 
     // jsx
     // DRY: don't repeat yourselft
@@ -22,14 +26,14 @@ class MyComponent extends React.Component {
 
         return (
             <div>
-                <Userinfor />
+                <AddUserinfor
+                    handleAddNewUser={this.handleAddNewUser}
+                />
+                <br />
                 <Displayinfor listUsers={this.state.listUsers} />
             </div>
         )
-
     };
-
-
 }
 
 export default MyComponent;
