@@ -1,52 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import './DisplayInfor.scss';
-import logo from './../logo.svg'
 
-class Displayinfor extends React.Component {
-    state = {
-        isShowListUser: true
+// class DisplayInfor extends React.Component {
+//     // stateless vs statefull
+//     render() {
+//         console.log(">>> Call me render")
+//         //destructuring array/object
+//         const { listUsers } = this.props;
+//         // console.log(">>>> check props:: ", this.props)
+//         //props => viet tac properties
+//         return (
+//             <div className="display-infor-container">
+
+//                 {
+//                    true &&
+//                     <>
+//                         {listUsers.map((user, index) => {
+//                             return (
+//                                 <div key={user.id} className={+user.age < 17 ? "green" : "red"}>
+//                                     <div>
+//                                         <div>My name is {user.name}</div>
+//                                         <div>My age is {user.age}</div>
+//                                     </div>
+
+//                                     <div>
+//                                         <button onClick={() => { this.props.handleDeleteUser(user.id) }}>de lét </button>
+//                                     </div>
+//                                 </div>
+
+
+//                             )
+//                         })}
+//                     </>
+//                 }
+//             </div>
+//         )
+//     }
+// }
+
+const DisplayInfor = (props) => {
+    const { listUsers } = props;
+    const [isShowHideListUser, setShowHideListUser] = useState(true);
+
+    const handleShowHideListUser = () => {
+        setShowHideListUser(!isShowHideListUser)
     }
-    handleShowHide = () => {
-        return this.setState({
-            isShowListUser: !this.state.isShowListUser
-        })
-    }
-    render() {
-        //destructuring array/object
-        const { listUsers } = this.props;
-        // console.log(">>>> check props:: ", this.props)
-        //props => viet tac properties
-        return (
-            <div className="display-infor-container">
-                <div>
-                    <span onClick={() => { this.handleShowHide() }}>
-                        {this.state.isShowListUser === true ? "Hide list users" : "Show list users"}
-                    </span>
-                </div>
-                {
-                    this.state.isShowListUser &&
-                    <>
-                        {listUsers.map((user, index) => {
-                            return (
-                                <div key={user.id} className={+user.age < 17 ? "green" : "red"}>
-                                    <div>
-                                        <div>My name is {user.name}</div>
-                                        <div>My age is {user.age}</div>
-                                    </div>
+    return (
+        <div className="display-infor-container">
+            <div>
+                <span onClick={() => handleShowHideListUser()}>
 
-                                    <div>
-                                        <button onClick={() => { this.props.handleDeleteUser(user.id) }}>de lét </button>
-                                    </div>
-                                </div>
-
-
-                            )
-                        })}
-                    </>
-                }
+                    {isShowHideListUser === true ? "Hide list Users" : "Show list Users"}
+                </span>
             </div>
-        )
-    }
-}
-
-export default Displayinfor;
+            {isShowHideListUser &&
+                <>
+                    {listUsers.map((user, index) => {
+                        return (
+                            <div key={user.id} className={+user.age < 17 ? "green" : "red"}>
+                                <div>
+                                    <div>My name is {user.name}</div>
+                                    <div>My age is {user.age}</div>
+                                </div>
+                                <div>
+                                    <button onClick={() => { props.handleDeleteUser(user.id) }}>de lét </button>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </>
+            }
+        </div>
+    )
+};
+export default DisplayInfor;
