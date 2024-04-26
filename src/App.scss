@@ -8,3 +8,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.app-container {
+  .header-container {
+      .navbar {
+        .nav-link {
+          &.active {
+            color: red;
+          }
+        }
+      }
+
+    // .navbar .nav-link.active {
+    //   color: blue;
+    // }
+  }
+}
