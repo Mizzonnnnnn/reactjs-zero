@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import axios from 'axios';
 
@@ -17,9 +18,18 @@ const ModalCreateUser = (props) => {
     const [role, setRole] = useState("USER");
     const [previewImage, setPreviewImage] = useState("");
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => {
+        // khi bam close thi nó sẽ làm rỗng dữ liệu
+        setShow(false)
+        setEmail("");
+        setPassword("");
+        setUsername("");
+        setImage("");
+        setRole("");
+        setPreviewImage("");
+    };
 
+    // const notify = () => toast("Wow so easy!");
 
     const handleUpdloadImage = (event) => {
         if (event.target && event.target && event.target.files[0]) {
@@ -30,8 +40,25 @@ const ModalCreateUser = (props) => {
         }
 
     }
-
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
     const handleSubSmitCreateUser = async () => {
+        // validate 
+        const isValidEmail = validateEmail(email);
+
+        if (!isValidEmail) {
+            toast.error("Invalid Email!")
+            return;
+        }
+
+        if (!password) {
+            toast.error("Invalid Password")
+        }
         const data = new FormData();
         data.append('email', email);
         data.append('password', password);
@@ -39,8 +66,17 @@ const ModalCreateUser = (props) => {
         data.append('role', role);
         data.append('userImage', image);
 
-        await axios.post('http://localhost:8081/api/v1/participant', data)
-        alert('click me')
+        let res = await axios.post('http://localhost:8081/api/v1/participant', data)
+        console.log(res.data)
+
+        if (res.data && res.data.EC === 0) {
+            toast.success(res.data.EM)
+            handleClose();
+        }
+
+        if (res.data && res.data.EC !== 0) {
+            toast.error(res.data.EM)
+        }
     }
 
     return (
@@ -116,7 +152,7 @@ const ModalCreateUser = (props) => {
                         <div className='col-md-12 img-preview'>
                             {previewImage
                                 ?
-                                <img src={previewImage} />
+                                <img src={previewImage} alt='nhin cai lol gi bat ngo lam ak' />
                                 :
                                 <span>Preview Image</span>
                             }
