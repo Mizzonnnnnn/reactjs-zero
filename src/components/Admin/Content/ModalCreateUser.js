@@ -5,11 +5,11 @@ import { FcPlus } from "react-icons/fc";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
-import axios from 'axios';
+
+import { postCreateNewUser } from '../../../services/apiService';
 
 const ModalCreateUser = (props) => {
     const { show, setShow } = props;
-    // const [show, setShow] = useState(false);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -29,14 +29,12 @@ const ModalCreateUser = (props) => {
         setPreviewImage("");
     };
 
-    // const notify = () => toast("Wow so easy!");
 
     const handleUpdloadImage = (event) => {
         if (event.target && event.target && event.target.files[0]) {
             setPreviewImage(URL.createObjectURL(event.target.files[0]));
             setImage(event.target.files[0]);
         } else {
-            // setPreviewImage("");
         }
 
     }
@@ -57,25 +55,19 @@ const ModalCreateUser = (props) => {
         }
 
         if (!password) {
-            toast.error("Invalid Password")
+            toast.error("Invalid Password");
         }
-        const data = new FormData();
-        data.append('email', email);
-        data.append('password', password);
-        data.append('username', username);
-        data.append('role', role);
-        data.append('userImage', image);
 
-        let res = await axios.post('http://localhost:8081/api/v1/participant', data)
-        console.log(res.data)
+        let data = await postCreateNewUser(email, password, username, role, image);
+        console.log(data)
 
-        if (res.data && res.data.EC === 0) {
-            toast.success(res.data.EM)
+        if (data && data.EC === 0) {
+            toast.success(data.EM)
             handleClose();
         }
 
-        if (res.data && res.data.EC !== 0) {
-            toast.error(res.data.EM)
+        if (data && data.EC !== 0) {
+            toast.error(data.EM)
         }
     }
 
@@ -157,6 +149,8 @@ const ModalCreateUser = (props) => {
                                 <span>Preview Image</span>
                             }
                         </div>
+
+
                     </form>}
                 </Modal.Body>
                 <Modal.Footer>
