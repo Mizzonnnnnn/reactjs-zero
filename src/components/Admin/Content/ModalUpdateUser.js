@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
-
+import _ from 'lodash';
 import { postCreateNewUser } from '../../../services/apiService';
 
-const ModalCreateUser = (props) => {
-    const { show, setShow } = props;
+const ModalUpdateUser = (props) => {
+    const { show, setShow, dataUpdate } = props;
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,15 +18,30 @@ const ModalCreateUser = (props) => {
     const [role, setRole] = useState("USER");
     const [previewImage, setPreviewImage] = useState("");
 
+
+    useEffect(() => {
+        console.log('run useffect', dataUpdate)
+        if (!_.isEmpty(dataUpdate)) {
+            setShow(false);
+            setEmail(dataUpdate.email);
+            setUsername(dataUpdate.username);
+            // setImage(dataUpdate.image);
+            setRole(dataUpdate.role);
+            // setPreviewImage(dataUpdate.previewImage);
+        }
+    }, [dataUpdate])
     const handleClose = () => {
         // khi bam close thi nó sẽ làm rỗng dữ liệu
-        setShow(false)
+        setShow(false);
         setEmail("");
         setPassword("");
         setUsername("");
         setImage("");
-        setRole("");
-        setPreviewImage("");
+        setRole("USER");
+        if (dataUpdate.image) {
+            setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
+        }
+
     };
 
 
@@ -71,13 +86,9 @@ const ModalCreateUser = (props) => {
             toast.error(data.EM)
         }
     }
-
+    console.log("Check redner data update")
     return (
         <>
-            <Button variant="primary" onClick={show} hidden>
-                Launch demo modal
-            </Button>
-
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -86,7 +97,7 @@ const ModalCreateUser = (props) => {
                 className='modal-add-users'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add new User</Modal.Title>
+                    <Modal.Title>Update new User</Modal.Title>
                 </Modal.Header>
                 <Modal.Body size>
                     {<form className="row g-3">
@@ -96,6 +107,7 @@ const ModalCreateUser = (props) => {
                                 type="email"
                                 className="form-control"
                                 value={email}
+                                disabled='true'
                                 onChange={(event) => setEmail(event.target.value)}
                             />
                         </div>
@@ -106,6 +118,7 @@ const ModalCreateUser = (props) => {
                                 type="password"
                                 className="form-control"
                                 value={password}
+                                disabled
                                 onChange={(event) => setPassword(event.target.value)}
                             />
                         </div>
@@ -145,7 +158,7 @@ const ModalCreateUser = (props) => {
                         <div className='col-md-12 img-preview'>
                             {previewImage
                                 ?
-                                <img src={previewImage} alt='nhin cai lol gi bat ngo lam ak' />
+                                <img src={previewImage} alt='nhin cai lol gi, bat ngo lam ak' />
                                 :
                                 <span>Preview Image</span>
                             }
@@ -167,4 +180,4 @@ const ModalCreateUser = (props) => {
     );
 }
 
-export default ModalCreateUser;
+export default ModalUpdateUser;
