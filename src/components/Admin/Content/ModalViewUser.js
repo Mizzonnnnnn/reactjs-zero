@@ -2,15 +2,12 @@ import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import _ from 'lodash';
-import { putUpdateUser } from '../../../services/apiService';
 
-const ModalUpdateUser = (props) => {
-    const { show, setShow, dataUpdate } = props;
-
+const ModalViewUser = (props) => {
+    const { show, setShow, dataView } = props;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -18,22 +15,19 @@ const ModalUpdateUser = (props) => {
     const [role, setRole] = useState("USER");
     const [previewImage, setPreviewImage] = useState("");
 
-
     useEffect(() => {
-
-        if (!_.isEmpty(dataUpdate)) {
+        if (!_.isEmpty(dataView)) {
             setShow(false);
-            setEmail(dataUpdate.email);
-            setUsername(dataUpdate.username);
-            setImage(dataUpdate.image);
-            setRole(dataUpdate.role);
-            if (dataUpdate.image) {
-                setPreviewImage(`data:image/png;base64,${dataUpdate.image}`);
+            setEmail(dataView.email);
+            setUsername(dataView.username);
+            setImage(dataView.image);
+            setRole(dataView.role);
+            if (dataView.image) {
+                setPreviewImage(`data:image/png;base64,${dataView.image}`);
             }
         }
-    }, [dataUpdate, setShow])
+    }, [dataView, setShow])
     const handleClose = () => {
-        // khi bam close thi nó sẽ làm rỗng dữ liệu
         setShow(false);
         setEmail("");
         setPassword("");
@@ -41,32 +35,9 @@ const ModalUpdateUser = (props) => {
         setImage("");
         setRole("USER");
         setPreviewImage("");
-        props.resetUpdateData();
+
+        props.resetViewData();
     };
-
-
-    const handleUpdloadImage = (event) => {
-        if (event.target && event.target && event.target.files[0]) {
-            setPreviewImage(URL.createObjectURL(event.target.files[0]));
-            setImage(event.target.files[0]);
-        } else {
-        }
-
-    }
-    const handleSubSmitCreateUser = async () => {
-        let data = await putUpdateUser(dataUpdate.id, username, role, image);
-        console.log(data)
-
-        if (data && data.EC === 0) {
-            toast.success(data.EM)
-            handleClose();
-            await props.fetchListUser();
-        }
-
-        if (data && data.EC !== 0) {
-            toast.error(data.EM)
-        }
-    }
 
     return (
         <>
@@ -78,7 +49,7 @@ const ModalUpdateUser = (props) => {
                 className='modal-add-users'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Update new User</Modal.Title>
+                    <Modal.Title>View User</Modal.Title>
                 </Modal.Header>
                 <Modal.Body size>
                     {<form className="row g-3">
@@ -89,7 +60,6 @@ const ModalUpdateUser = (props) => {
                                 className="form-control"
                                 value={email}
                                 disabled='true'
-                                onChange={(event) => setEmail(event.target.value)}
                             />
                         </div>
 
@@ -99,8 +69,7 @@ const ModalUpdateUser = (props) => {
                                 type="password"
                                 className="form-control"
                                 value={password}
-                                disabled
-                                onChange={(event) => setPassword(event.target.value)}
+                                disabled='true'
                             />
                         </div>
 
@@ -110,15 +79,17 @@ const ModalUpdateUser = (props) => {
                                 type="text"
                                 className="form-control"
                                 value={username}
-                                onChange={(event) => setUsername(event.target.value)}
+                                disabled
                             />
                         </div>
 
                         <div className="col-md-4">
                             <label className="form-label">Role</label>
-                            <select className="form-select"
-                                onChange={(event) => setRole(event.target.value)}
-                                value={role}>
+                            <select
+                                className="form-select"
+                                value={role}
+                                disabled
+                            >
                                 <option value="ADMIN">ADMIN</option>
                                 <option value="USER">USER</option>
                             </select>
@@ -130,9 +101,9 @@ const ModalUpdateUser = (props) => {
                             </label>
                             <input
                                 type='file'
-                                id='fileInput' hidden
-                                onChange={(event) => handleUpdloadImage(event)}
-                            // value={image} ở đây nó không đc dùng vì tinh bảo mật, khi đã khai báo type='file' thì khonng cho phép đật giá trị iput cảu js 1 cáh truc tiep
+                                id='fileInput'
+                                hidden
+                                disabled
                             />
                         </div>
 
@@ -144,15 +115,13 @@ const ModalUpdateUser = (props) => {
                                 <span>Preview Image</span>
                             }
                         </div>
-
-
                     </form>}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleSubSmitCreateUser}>
+                    <Button variant="primary">
                         Save
                     </Button>
                 </Modal.Footer>
@@ -161,4 +130,4 @@ const ModalUpdateUser = (props) => {
     );
 }
 
-export default ModalUpdateUser;
+export default ModalViewUser;

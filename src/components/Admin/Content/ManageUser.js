@@ -5,6 +5,7 @@ import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import { getAllUser } from "../../../services/apiService";
 import ModalUpdateUser from "./ModalUpdateUser";
+import ModalViewUser from "./ModalViewUser";
 
 
 const ManageUser = (props) => {
@@ -12,8 +13,10 @@ const ManageUser = (props) => {
     const [listUser, setListUser] = useState([]);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [dataUpdate, setDataUpdate] = useState([]);
-    // nó sẽ đc chạy khi hàm return chay
-    // khong nen goi truc tiep asyn 
+    const [showModalViewUser, setShowModalViewUser] = useState(false);
+    const [dataView, setDataView] = useState([]);
+
+
     useEffect(() => {
         fetchListUser();
     }, []) // chạy dunng 1 lan
@@ -37,6 +40,16 @@ const ManageUser = (props) => {
     const resetUpdateData = () => {
         setDataUpdate({})
     }
+
+    // button view
+    const handleClickbBtnView = (user) => {
+        console.log("Check view user: ", user)
+        setShowModalViewUser(true);
+        setDataView(user);
+    }
+    const resetViewData = () => {
+        setDataView({})
+    }
     return (
         <div className="manage-users-container">
             <div className="title">
@@ -52,6 +65,7 @@ const ManageUser = (props) => {
                 <div className="table-users-container">
                     <TableUser listUser={listUser}
                         handleClickBtnUpdate={handleClickBtnUpdate}
+                        handleClickbBtnView={handleClickbBtnView}
                     />
                 </div>
                 <ModalCreateUser
@@ -65,6 +79,12 @@ const ManageUser = (props) => {
                     dataUpdate={dataUpdate}
                     fetchListUser={fetchListUser}
                     resetUpdateData={resetUpdateData}
+                />
+                <ModalViewUser
+                    show={showModalViewUser}
+                    setShow={setShowModalViewUser}
+                    dataView={dataView}
+                    resetViewData={resetViewData}
                 />
             </div>
         </div>

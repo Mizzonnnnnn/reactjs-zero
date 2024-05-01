@@ -22,8 +22,9 @@ const putUpdateUser = async (id, username, role, image) => {
     data.append('userImage', image);
     return await axios.put('/api/v1/participant', data)
 }
+
 export {
     postCreateNewUser,
     getAllUser,
-    putUpdateUser
+    putUpdateUser,
 }

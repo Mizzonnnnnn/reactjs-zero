@@ -1,5 +1,4 @@
 
-
 const TableUser = (props) => {
     const { listUser } = props;
     return (
@@ -24,9 +23,9 @@ const TableUser = (props) => {
                                     <td>{item.username}</td>
                                     <td>{item.role}</td>
                                     <td>
-                                        <button className="btn btn-outline-success">View</button>
+                                        <button className="btn btn-outline-success" onClick={() => props.handleClickbBtnView(item)} > View</button>
                                         <button className="btn btn-outline-warning mx-3" onClick={() => props.handleClickBtnUpdate(item)}>Update</button>
-                                        <button className="btn btn-outline-danger">Delete</button>
+                                        <button className="btn btn-outline-danger" >Delete</button>
                                     </td>
                                 </tr>
                             )
@@ -38,7 +37,7 @@ const TableUser = (props) => {
                                 Not found data
                             </td>
                         </tr>}
-                </tbody>
+                </tbody >
             </table >
         </>
     )
