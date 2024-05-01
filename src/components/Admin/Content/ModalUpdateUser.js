@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import _ from 'lodash';
-import { postCreateNewUser } from '../../../services/apiService';
+import { putUpdateUser } from '../../../services/apiService';
 
 const ModalUpdateUser = (props) => {
     const { show, setShow, dataUpdate } = props;
@@ -20,7 +20,7 @@ const ModalUpdateUser = (props) => {
 
 
     useEffect(() => {
-        console.log('run useffect', dataUpdate)
+        // console.log('run useffect', dataUpdate)
         if (!_.isEmpty(dataUpdate)) {
             setShow(false);
             setEmail(dataUpdate.email);
@@ -41,7 +41,7 @@ const ModalUpdateUser = (props) => {
         if (dataUpdate.image) {
             setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
         }
-
+        props.resetUpdateData();
     };
 
 
@@ -53,27 +53,8 @@ const ModalUpdateUser = (props) => {
         }
 
     }
-    const validateEmail = (email) => {
-        return String(email)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
-    };
     const handleSubSmitCreateUser = async () => {
-        // validate 
-        const isValidEmail = validateEmail(email);
-
-        if (!isValidEmail) {
-            toast.error("Invalid Email!")
-            return;
-        }
-
-        if (!password) {
-            toast.error("Invalid Password");
-        }
-
-        let data = await postCreateNewUser(email, password, username, role, image);
+        let data = await putUpdateUser(dataUpdate.id, username, role, image);
         console.log(data)
 
         if (data && data.EC === 0) {
@@ -86,7 +67,7 @@ const ModalUpdateUser = (props) => {
             toast.error(data.EM)
         }
     }
-    console.log("Check redner data update")
+
     return (
         <>
             <Modal

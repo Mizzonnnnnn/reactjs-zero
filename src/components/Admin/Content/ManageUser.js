@@ -20,7 +20,6 @@ const ManageUser = (props) => {
 
     const fetchListUser = async () => {
         let res = await getAllUser();
-        console.log(res);
         if (res.EC === 0) {
             setListUser(res.DT)
         }
@@ -30,9 +29,13 @@ const ManageUser = (props) => {
     }
 
     const handleClickBtnUpdate = (user) => {
+        console.log("Check user: ", user)
         setShowModalUpdateUser(true)
         setDataUpdate(user)
-        console.log(user);
+    }
+
+    const resetUpdateData = () => {
+        setDataUpdate({})
     }
     return (
         <div className="manage-users-container">
@@ -60,6 +63,8 @@ const ManageUser = (props) => {
                     show={showModalUpdateUser}
                     setShow={setShowModalUpdateUser}
                     dataUpdate={dataUpdate}
+                    fetchListUser={fetchListUser}
+                    resetUpdateData={resetUpdateData}
                 />
             </div>
         </div>
