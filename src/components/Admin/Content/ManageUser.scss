@@ -8,6 +8,7 @@
                 border-radius: 5px;
                 margin       : 15px 0;
             }
+
         }
     }
 
@@ -15,6 +16,7 @@
         font-weight: 600;
         font-size  : 20px;
     }
+
 }
 
 .modal-add-users {
@@ -34,16 +36,16 @@
     }
 
     .label-upload {
-        display         : flex;
-        align-items     : center;
-        gap             : 5px;
-        width           : fit-content;
+        display      : flex;
+        align-items  : center;
+        gap          : 5px;
+        width        : fit-content;
         border       : 1px solid red;
-        border-radius   : 5px;
-        background      : rgb(170, 191, 202);
-        border          : none;
-        padding         : 3px 5px;
-        cursor          : pointer;
+        border-radius: 5px;
+        background   : rgb(170, 191, 202);
+        border       : none;
+        padding      : 3px 5px;
+        cursor       : pointer;
 
         &:hover {
             background-color: rgb(113, 180, 217);

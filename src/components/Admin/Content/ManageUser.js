@@ -1,42 +1,56 @@
 import ModalCreateUser from "./ModalCreateUser";
 import './ManageUser.scss';
 import { FcPlus } from "react-icons/fc";
-import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
-import { getAllUser } from "../../../services/apiService";
+import { getAllUser, getUserWithPaginate } from "../../../services/apiService";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
+import ModalDeleteUser from "./ModalDeleteUser";
+import TableUserPaginate from "./TableUserPaginate";
 
 
 const ManageUser = (props) => {
+    const LIMIT_USER = 1;
+    const [pageCount, setPaggeCount] = useState(0);
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [listUser, setListUser] = useState([]);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
     const [dataUpdate, setDataUpdate] = useState([]);
     const [showModalViewUser, setShowModalViewUser] = useState(false);
     const [dataView, setDataView] = useState([]);
-
+    const [showModalDeleteUser, setShowModalDeleteUser] = useState(false)
+    const [dataDelete, setDataDelete] = useState([]);
 
     useEffect(() => {
-        fetchListUser();
+        // fetchListUser();
+        fetchListUserWithPaginate(1);
     }, []) // chạy dunng 1 lan
 
     const fetchListUser = async () => {
         let res = await getAllUser();
         if (res.EC === 0) {
+            console.log("res.dt", res.DT)
             setListUser(res.DT)
         }
     }
+
+    const fetchListUserWithPaginate = async (page) => {
+        let res = await getUserWithPaginate(page, LIMIT_USER);
+        if (res.EC === 0) {
+            console.log("res.dt", res.DT)
+            setListUser(res.DT.users);
+            setPaggeCount(res.DT.totalPages);
+        }
+    }
+    // button update
     const setShow = () => {
         setShowModalCreateUser(true)
     }
-
     const handleClickBtnUpdate = (user) => {
         console.log("Check user: ", user)
         setShowModalUpdateUser(true)
         setDataUpdate(user)
     }
-
     const resetUpdateData = () => {
         setDataUpdate({})
     }
@@ -50,6 +64,15 @@ const ManageUser = (props) => {
     const resetViewData = () => {
         setDataView({})
     }
+
+    // button delete
+    const handleClickBtnDelete = (user) => {
+        console.log("Delete user: ", user)
+        setShowModalDeleteUser(true);
+        setDataDelete(user)
+    }
+
+
     return (
         <div className="manage-users-container">
             <div className="title">
@@ -63,9 +86,18 @@ const ManageUser = (props) => {
                     </button>
                 </div>
                 <div className="table-users-container">
-                    <TableUser listUser={listUser}
+                    {/* <TableUser listUser={listUser}
                         handleClickBtnUpdate={handleClickBtnUpdate}
                         handleClickbBtnView={handleClickbBtnView}
+                        handleClickBtnDelete={handleClickBtnDelete}
+                    /> */}
+                    <TableUserPaginate
+                        listUser={listUser}
+                        handleClickBtnUpdate={handleClickBtnUpdate}
+                        handleClickbBtnView={handleClickbBtnView}
+                        handleClickBtnDelete={handleClickBtnDelete}
+                        fetchListUserWithPaginate={fetchListUserWithPaginate}
+                        pageCount={pageCount}
                     />
                 </div>
                 <ModalCreateUser
@@ -85,6 +117,14 @@ const ManageUser = (props) => {
                     setShow={setShowModalViewUser}
                     dataView={dataView}
                     resetViewData={resetViewData}
+                />
+
+                <ModalDeleteUser
+                    show={showModalDeleteUser}
+                    setShow={setShowModalDeleteUser}
+                    handleClickBtnDelete={handleClickBtnDelete}
+                    fetchListUser={fetchListUser}
+                    dataDelete={dataDelete}
                 />
             </div>
         </div>

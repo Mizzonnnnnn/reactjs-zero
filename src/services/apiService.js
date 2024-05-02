@@ -22,9 +22,20 @@ const putUpdateUser = async (id, username, role, image) => {
     data.append('userImage', image);
     return await axios.put('/api/v1/participant', data)
 }
+const delDeleteUser = async (userId) => {
+    let config = {
+        data: { id: userId }
+    }
+    return await axios.delete('/api/v1/participant', config)
+}
 
+const getUserWithPaginate = async (page, limit) => {
+    return await axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
+}
 export {
     postCreateNewUser,
     getAllUser,
     putUpdateUser,
+    delDeleteUser,
+    getUserWithPaginate,
 }
