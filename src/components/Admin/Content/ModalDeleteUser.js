@@ -13,11 +13,11 @@ const ModalDeleteUser = (props) => {
 
     const handleSubSmitDeleteUser = async () => {
         let data = await delDeleteUser(dataDelete.id);
-        console.log("eeeeL;; ", dataDelete.id)
         if (data && data.EC === 0) {
             toast.success(data.EM)
             handleClose();
-            await props.fetchListUser();
+            props.setCurrentPage(1)
+            await props.fetchListUserWithPaginate(1);
         }
 
         if (data && data.EC !== 0) {

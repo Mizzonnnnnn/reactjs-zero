@@ -9,7 +9,7 @@ import _ from 'lodash';
 import { putUpdateUser } from '../../../services/apiService';
 
 const ModalUpdateUser = (props) => {
-    const { show, setShow, dataUpdate } = props;
+    const { show, setShow, dataUpdate, currentPage } = props;
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -53,14 +53,14 @@ const ModalUpdateUser = (props) => {
         }
 
     }
-    const handleSubSmitCreateUser = async () => {
+    const handleSubSmitCreateUser = async (event) => {
         let data = await putUpdateUser(dataUpdate.id, username, role, image);
         console.log(data)
 
         if (data && data.EC === 0) {
             toast.success(data.EM)
             handleClose();
-            await props.fetchListUser();
+            await props.fetchListUserWithPaginate(currentPage);
         }
 
         if (data && data.EC !== 0) {
