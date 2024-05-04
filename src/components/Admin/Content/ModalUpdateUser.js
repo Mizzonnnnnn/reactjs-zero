@@ -53,7 +53,7 @@ const ModalUpdateUser = (props) => {
         }
 
     }
-    const handleSubSmitCreateUser = async (event) => {
+    const handleSubSmitCreateUser = async () => {
         let data = await putUpdateUser(dataUpdate.id, username, role, image);
         console.log(data)
 

@@ -1,0 +1,115 @@
+.register-container {
+    .column {
+        height         : 100vh;
+        display        : flex;
+        justify-content: center;
+        align-items    : center;
+        flex-direction : column;
+    }
+}
+
+.left {
+    float           : left;
+    color           : white;
+    background-color: rgb(25, 25, 25);
+    size            : 302px;
+    width           : 40%;
+
+    .title {
+        padding-top: 10px;
+        font-size  : 30px;
+        width      : 366px;
+        font-weight: 400;
+        line-height: 44px;
+        text-align : center;
+    }
+
+    .picture {
+        padding-top: 10px;
+
+        img {
+            width: 300px;
+        }
+    }
+
+    .footer {
+        margin-top: 200px;
+        cursor    : pointer;
+        bottom    : 0;
+    }
+}
+
+.right {
+    float         : right;
+    width         : 60%;
+    flex-direction: column;
+    position      : relative;
+    /* Thêm thuộc tính position */
+
+    .btn-submit {
+        border-radius: 5px;
+        height       : 38px;
+        width        : 100%;
+        background   : rgb(58, 57, 57);
+        color        : white;
+
+        &:hover {
+            background-color: black;
+        }
+    }
+
+    .title-sign {
+        font-weight  : 200;
+        font-size    : 24px;
+        line-height  : 36px;
+        color        : rgb(94, 94, 94);
+        margin-bottom: 24px;
+        text-align   : center;
+        max-width    : 600px;
+        font-family  : apercu-pro, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    }
+
+    div {
+        margin-top: 15px;
+    }
+
+    .head {
+        position     : absolute;
+        /* Thêm thuộc tính position */
+        top          : 0;
+        /* Đưa phần tử lên trên cùng */
+        right        : 0;
+        /* Đưa phần tử sang trái cùng */
+        margin-left  : 0;
+        margin-right : auto;
+        margin-top   : 0 !important;
+        padding-right: 10px;
+        padding-top  : 10px;
+
+        label {
+            margin-right: 20px;
+        }
+
+        button {
+            border-radius   : 5px;
+            cursor          : pointer;
+            background-color: white;
+            border-width    : 0.1px;
+            padding-left    : 15px;
+            padding-right   : 15px;
+            padding-bottom  : 5px;
+        }
+    }
+
+    .pass-group {
+        position: relative;
+
+        .icons-eye {
+            cursor  : pointer;
+            position: absolute;
+            right   : 10px;
+            bottom  : 10px;
+        }
+    }
+
+}

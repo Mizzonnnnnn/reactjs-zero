@@ -9,6 +9,7 @@ import {
     SidebarContent,
 } from 'react-pro-sidebar';
 
+import { useNavigate } from 'react-router-dom';
 import { FaGem } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg3.jpg';
 import { DiReact } from "react-icons/di";
@@ -17,6 +18,10 @@ import { MdDashboard } from "react-icons/md";
 import './SideBar.scss';
 import { Link } from 'react-router-dom';
 const SideBar = (props) => {
+    const navigate = useNavigate();
+    const hanbleBackHome = () => {
+        navigate('/')
+    }
     const { collapsed, toggled, handleToggleSidebar } = props;
     return (
         <>
@@ -38,10 +43,11 @@ const SideBar = (props) => {
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             whiteSpace: 'nowrap',
+                            cursor: 'pointer'
                         }}
                     >
                         <DiReact size={'3em'} color={"00bfff"} />
-                        <span >MIZZZON</span>
+                        <span onClick={() => hanbleBackHome()}>Mizzon</span>
                     </div>
                 </SidebarHeader>
 
