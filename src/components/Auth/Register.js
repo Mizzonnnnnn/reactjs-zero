@@ -120,7 +120,6 @@ const Register = () => {
                     }
 
                 </div>
-
                 <div className='col-md-4'>
                     <button
                         className='btn-submit'
@@ -129,6 +128,10 @@ const Register = () => {
                         Create my free account
                     </button>
                 </div>
+                <div className='back text-center'>
+                    <span onClick={() => handleBackHome()}>&#60;&#60; Go to Homepage</span>
+                </div>
+
             </div>
         </div >
     )

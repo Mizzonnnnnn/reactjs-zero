@@ -3,11 +3,32 @@ import './Login.scss'
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../services/apiService';
 import { toast } from 'react-toastify';
+import { FiEyeOff, FiEye } from "react-icons/fi";
+
 const Login = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
+    const [isShowPassword, setIsShowPassword] = useState(false)
+
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
     const handleLogin = async () => {
+
+        const isValidEmail = validateEmail(email);
+        if (!isValidEmail) {
+            toast.error("Invalid Email!")
+            return;
+        }
+        if (!password) {
+            toast.error("Invalid Password");
+        }
         // submit api
         let res = await postLogin(email, password);
         console.log(res)
@@ -47,19 +68,33 @@ const Login = (props) => {
                     <label>Email</label>
                     <input
                         type={"email"}
+                        placeholder='bruce@wayne.com'
                         className='form-control'
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                     ></input>
                 </div>
-                <div className='form-group'>
+                <div className='form-group pass-group'>
                     <label>Password</label>
                     <input
-                        type={"password"}
+                        type={isShowPassword === true ? "text" : "password"}
                         className='form-control'
                         value={password}
+                        placeholder='At least 8 characters'
                         onChange={(event) => setPassword(event.target.value)}
                     ></input>
+                    {
+                        isShowPassword ?
+                            <span className='icons-eye'
+                                onClick={() => setIsShowPassword(false)}>
+                                <FiEye />
+                            </span> :
+
+                            <span className='icons-eye'
+                                onClick={() => setIsShowPassword(true)}>
+                                <FiEyeOff />
+                            </span>
+                    }
                 </div>
                 <span className='forgot-password'>Forgot password?</span>
                 <div>
