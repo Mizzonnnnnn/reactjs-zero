@@ -4,12 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../services/apiService';
 import { toast } from 'react-toastify';
 import { FiEyeOff, FiEye } from "react-icons/fi";
+import { useDispatch } from 'react-redux';
+import { doLogin } from '../../redux/action/userAction';
 
 const Login = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [isShowPassword, setIsShowPassword] = useState(false)
+    const dispatch = useDispatch()
 
     const validateEmail = (email) => {
         return String(email)
@@ -30,16 +33,19 @@ const Login = (props) => {
             toast.error("Invalid Password");
         }
         // submit api
-        let res = await postLogin(email, password);
-        console.log(res)
+        let data = await postLogin(email, password);
         // validate
-        if (res && res.EC === 0) {
-            toast.success(res.EM)
+        if (data && data.EC === 0) {
+            dispatch({
+                type: doLogin,
+                payload: data
+            })
+            toast.success(data.EM)
             navigate("/")
         }
 
-        if (res && res.EC !== 0) {
-            toast.error(res.EM)
+        if (data && data.EC !== 0) {
+            toast.error(data.EM)
         }
 
     }
