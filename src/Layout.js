@@ -42,7 +42,6 @@ const Layout = (props) => {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                theme="colored"
             />
         </>
     )

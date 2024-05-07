@@ -33,8 +33,12 @@ const getUserWithPaginate = async (page, limit) => {
     return await axios.get(`api/v1/participant?page=${page}&limit=${limit}`);
 }
 
-const postLogin = async (email, password) => {
-    return await axios.post(`/api/v1/login`, { email, password })
+const postLogin = async (email, password, delay) => {
+    return await axios.post(`/api/v1/login`, {
+        email,
+        password,
+        delay: 5000,
+    })
 }
 
 const postRegister = async (email, username, password) => {

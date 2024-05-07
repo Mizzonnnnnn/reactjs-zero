@@ -78,7 +78,7 @@ const Register = () => {
                         type={"email"}
                         className='form-control'
                         value={email}
-                        placeholder='Email'
+                        placeholder='bruce@wayne.com'
                         onChange={(event) => setEmail(event.target.value)}
                     ></input>
                 </div>
@@ -88,7 +88,7 @@ const Register = () => {
                         type={"text"}
                         className='form-control'
                         value={username}
-                        placeholder="UserName"
+                        placeholder="zxy"
                         onChange={(event) => setUsername(event.target.value)}
                     ></input>
                 </div>
@@ -99,7 +99,7 @@ const Register = () => {
                         type={isShowPassword ? "text" : "password"}
                         className='form-control'
                         value={password}
-                        placeholder='Password'
+                        placeholder='At least 8 characters'
                         onChange={(event) => setPassword(event.target.value)}
                     />
                     {

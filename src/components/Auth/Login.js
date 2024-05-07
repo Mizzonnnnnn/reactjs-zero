@@ -6,12 +6,15 @@ import { toast } from 'react-toastify';
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
+import { FaSpinner } from "react-icons/fa";
+import { isSourceFile } from 'typescript';
 
 const Login = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [isShowPassword, setIsShowPassword] = useState(false)
+    const [isShowLoad, setIsShowLoad] = useState(false);
     const dispatch = useDispatch()
 
     const validateEmail = (email) => {
@@ -32,20 +35,21 @@ const Login = (props) => {
         if (!password) {
             toast.error("Invalid Password");
         }
+
+        setIsShowLoad(true)
         // submit api
         let data = await postLogin(email, password);
         // validate
         if (data && data.EC === 0) {
-            dispatch({
-                type: doLogin,
-                payload: data
-            })
+            dispatch(doLogin(data))
             toast.success(data.EM)
+            setIsShowLoad(false)
             navigate("/")
         }
 
-        if (data && data.EC !== 0) {
+        if (data && +data.EC !== 0) {
             toast.error(data.EM)
+            setIsShowLoad(false)
         }
 
     }
@@ -74,7 +78,7 @@ const Login = (props) => {
                     <label>Email</label>
                     <input
                         type={"email"}
-                        placeholder='bruce@wayne.com'
+
                         className='form-control'
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
@@ -86,7 +90,7 @@ const Login = (props) => {
                         type={isShowPassword === true ? "text" : "password"}
                         className='form-control'
                         value={password}
-                        placeholder='At least 8 characters'
+
                         onChange={(event) => setPassword(event.target.value)}
                     ></input>
                     {
@@ -107,7 +111,11 @@ const Login = (props) => {
                     <button
                         className='btn-submit'
                         onClick={() => handleLogin()}
-                    >Log in to Mizzon
+                        disabled={isShowLoad}
+                    >
+                        {isShowLoad === true && <FaSpinner className='loaderIcon' />}
+
+                        <span>Log in to Mizzon</span>
                     </button>
                 </div>
                 <div className='back text-center'>
