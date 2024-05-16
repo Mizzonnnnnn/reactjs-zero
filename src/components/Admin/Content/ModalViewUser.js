@@ -102,6 +102,7 @@ const ModalViewUser = (props) => {
                             <input
                                 type='file'
                                 id='fileInput'
+                                value={image}
                                 hidden
                                 disabled
                             />

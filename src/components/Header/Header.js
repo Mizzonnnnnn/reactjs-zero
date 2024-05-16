@@ -9,7 +9,7 @@ const Header = () => {
     const navigate = useNavigate();
 
     const isAuthenticated = useSelector(state => state.user.isAuthenticated)
-    const account = useSelector(state => state.user.account)
+    // const account = useSelector(state => state.user.account)
 
     const handleLogin = () => {
         navigate("/login");
@@ -30,7 +30,7 @@ const Header = () => {
 
                     </Nav>
                     <Nav>
-                        {isAuthenticated == false ?
+                        {isAuthenticated === false ?
                             <>
                                 <button className='btn-login' onClick={() => handleLogin()}>Login</button>
                                 <button className='btn-signup' onClick={() => handleRegister()}>Sign up</button>

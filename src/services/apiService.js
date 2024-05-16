@@ -44,6 +44,9 @@ const postLogin = async (email, password, delay) => {
 const postRegister = async (email, username, password) => {
     return await axios.post(`/api/v1/register`, { email, username, password });
 }
+const getQuizByUser = () => {
+    return axios.get('/api/v1/quiz-by-participant');
+}
 export {
     postCreateNewUser,
     getAllUser,
@@ -51,5 +54,6 @@ export {
     delDeleteUser,
     getUserWithPaginate,
     postLogin,
-    postRegister
+    postRegister,
+    getQuizByUser,
 }

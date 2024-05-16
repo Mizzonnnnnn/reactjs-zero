@@ -7,7 +7,6 @@ import { FiEyeOff, FiEye } from "react-icons/fi";
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
 import { FaSpinner } from "react-icons/fa";
-import { isSourceFile } from 'typescript';
 
 const Login = (props) => {
     const navigate = useNavigate();
