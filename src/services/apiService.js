@@ -49,11 +49,20 @@ const getQuizByUser = () => {
 }
 
 const getDataQuiz = (id) => {
-    return axios.get(`/api/v1/questions-by-quiz?quizId=${id}`);
+    return axios.get(`/api/v1/questions-by-quiz?quizId=${id}`); 
 }
 
 const postSubmitQuiz = (data) => {
     return axios.post(`/api/v1/quiz-submit`, { ...data });
+}
+
+const postCreateNewQuiz = async (description, name, difficulty, image) => {
+    const data = new FormData();
+    data.append('description', description);
+    data.append('name', name);
+    data.append('difficulty', difficulty);
+    data.append('quizImage', image);
+    return await axios.post('/api/v1/quiz', data)
 }
 export {
     postCreateNewUser,
@@ -66,4 +75,5 @@ export {
     getQuizByUser,
     getDataQuiz,
     postSubmitQuiz,
+    postCreateNewQuiz,
 }
