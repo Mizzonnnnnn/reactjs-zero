@@ -17,7 +17,6 @@ const ModalViewUser = (props) => {
 
     useEffect(() => {
         if (!_.isEmpty(dataView)) {
-            setShow(false);
             setEmail(dataView.email);
             setUsername(dataView.username);
             setImage(dataView.image);
@@ -102,7 +101,6 @@ const ModalViewUser = (props) => {
                             <input
                                 type='file'
                                 id='fileInput'
-                                value={image}
                                 hidden
                                 disabled
                             />

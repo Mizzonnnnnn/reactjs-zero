@@ -20,13 +20,13 @@ const ModalCreateUser = (props) => {
 
     const handleClose = () => {
         // khi bam close thi nó sẽ làm rỗng dữ liệu
-        setShow(false)
+
         setEmail("");
         setPassword("");
         setUsername("");
         setImage("");
         setRole("");
-        setPreviewImage("");
+        setPreviewImage(""); setShow(false)
     };
 
 

@@ -4,7 +4,6 @@ import Select from 'react-select';
 import { postCreateNewQuiz } from '../../../../services/apiService';
 import { toast } from 'react-toastify';
 import TableQuiz from './TableQuiz';
-// import ReactPaginate from 'react-paginate';
 import Accordion from 'react-bootstrap/Accordion';
 
 const options = [
