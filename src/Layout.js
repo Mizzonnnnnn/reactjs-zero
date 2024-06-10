@@ -15,7 +15,7 @@ import App from './App';
 import Register from './components/Auth/Register';
 import ListQuiz from './components/User/ListQuiz';
 import DetailQuiz from './components/User/DetailQuiz'
-import ManageQuiz from './components/Admin/Content/Quiz/ManageQuiz.';
+import ManageQuiz from './components/Admin/Content/Quiz/ManageQuiz';
 
 const Notfound = () => {
     return (
