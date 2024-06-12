@@ -108,7 +108,7 @@ const ModalUpdateQuiz = (props) => {
                         </div>
 
                         <div className="col-md-4">
-                            <label className="form-label">Role</label>
+                            <label className="form-label">Type</label>
                             <select className="form-select"
                                 onChange={(event) => setType(event.target.value)}
                                 value={type}>

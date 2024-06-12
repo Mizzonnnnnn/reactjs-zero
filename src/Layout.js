@@ -16,7 +16,7 @@ import Register from './components/Auth/Register';
 import ListQuiz from './components/User/ListQuiz';
 import DetailQuiz from './components/User/DetailQuiz'
 import ManageQuiz from './components/Admin/Content/Quiz/ManageQuiz';
-
+import ManageQuestion from './components/Admin/Content/Question/ManageQuestion';
 const Notfound = () => {
     return (
         <div className='alert alert-danger container mt-3'>404. Not found data with your current URL</div>
@@ -38,6 +38,7 @@ const Layout = (props) => {
                     <Route index element={<DashBoard />} />
                     <Route path="manage-users" element={<ManageUser />} />
                     <Route path="manage-quizes" element={<ManageQuiz />} />
+                    <Route path="manage-questions" element={<ManageQuestion />} />
                 </Route>
 
                 <Route path="login" element={<Login />} />

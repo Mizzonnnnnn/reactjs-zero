@@ -1,0 +1,88 @@
+.questions-container {
+    padding: 15px;
+
+    .title {
+        font-size: 25px;
+    }
+
+    .add-new-question {
+        .questions-content {
+            display    : flex;
+            gap        : 20px;
+            align-items: center;
+
+            .description {
+                width: 50%;
+            }
+
+            .group-upload {
+                // padding-top: 10px;
+
+                .uploadFile {
+                    display      : flex;
+                    align-items  : center;
+                    gap          : 5px;
+                    width        : fit-content;
+                    border       : 1px solid #ced4da;
+                    border-radius: 5px;
+                    padding      : 3px 5px;
+                    padding-top  : 2px;
+                    cursor       : pointer;
+
+                    &:hover {
+                        background-color: rgb(231, 226, 226)
+                    }
+                }
+            }
+
+            .icon {
+                cursor       : pointer;
+                font-size    : 30px;
+                margin-bottom: 7px;
+
+                .icon-add {
+                    color       : rgb(91, 128, 36);
+                    margin-right: 5px;
+                }
+
+                .icon-remove {
+                    color: red;
+                }
+            }
+        }
+
+        .answer-content {
+            align-items : center;
+            padding-top : 10px;
+            padding-left: 10px;
+            display     : flex;
+            gap         : 10px;
+
+
+            .iscorrect {
+                font-size: 18px
+            }
+
+            .answer-name {
+                width: 47.4%;
+            }
+
+            .btn-group {
+                cursor       : pointer;
+                font-size    : 30px;
+                margin-bottom: 7px;
+
+                .icon-add {
+                    color       : rgb(91, 128, 36);
+                    margin-right: 5px;
+                }
+
+                .icon-remove {
+                    color: red;
+                }
+            }
+
+
+        }
+    }
+}

@@ -20,7 +20,7 @@ const ListQuiz = (props) => {
             {arrQuiz && arrQuiz.length > 0 &&
                 arrQuiz.map((item, index) => {
                     return (
-                        <div className="card" style={{ width: "18rem" }}>
+                        <div className="card" key={`list-quizs-${index}`} style={{ width: "18rem" }}>
                             <img className="card-img-top" src={`data:image/jpeg;base64,${item.image}`} alt="" />
                             <div className="card-body">
                                 <h5 className="card-title">Quiz {index + 1}</h5>
