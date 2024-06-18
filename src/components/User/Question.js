@@ -21,7 +21,7 @@ const Question = (props) => {
             }
             <div className="question">Question {index + 1}: {data.questionDescription}?</div>
             <div className="answer">
-                {data.answers && data.answers.length &&
+                {data.answers && data.answers.length > 0 &&
                     data.answers.map((a, index) => {
                         return (
                             <div

@@ -6,6 +6,10 @@
     }
 
     .add-new-question {
+        .form-group {
+            width: 50%;
+        }
+
         .questions-content {
             display    : flex;
             gap        : 20px;
@@ -16,28 +20,37 @@
             }
 
             .group-upload {
-                // padding-top: 10px;
+                display        : flex;
+                align-items    : center;
+                justify-content: center;
+                gap            : 10px;
 
                 .uploadFile {
-                    display      : flex;
-                    align-items  : center;
-                    gap          : 5px;
-                    width        : fit-content;
-                    border       : 1px solid #ced4da;
-                    border-radius: 5px;
-                    padding      : 3px 5px;
-                    padding-top  : 2px;
-                    cursor       : pointer;
+                    display    : flex;
+                    align-items: center;
+                    gap        : 5px;
 
-                    &:hover {
-                        background-color: rgb(231, 226, 226)
+                    .icon-upload {
+                        font-size: 25px;
+                        cursor   : pointer;
+                    }
+                }
+
+                .upload {
+                    display    : flex;
+                    align-items: center;
+
+                    .uploadName {
+                        cursor: pointer;
                     }
                 }
             }
 
+
+
             .icon {
                 cursor       : pointer;
-                font-size    : 30px;
+                font-size    : 25px;
                 margin-bottom: 7px;
 
                 .icon-add {
@@ -64,12 +77,12 @@
             }
 
             .answer-name {
-                width: 47.4%;
+                width: 50%;
             }
 
             .btn-group {
                 cursor       : pointer;
-                font-size    : 30px;
+                font-size    : 25px;
                 margin-bottom: 7px;
 
                 .icon-add {
