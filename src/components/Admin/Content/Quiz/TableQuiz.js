@@ -14,6 +14,8 @@ const TableQuiz = (props) => {
     }, [])
 
     const fetchQuiz = async () => {
+        setDataDelete({});
+        setDataUpdate({});
         let res = await getAllQuizForAdmin();
         console.log('check res, ', res)
         if (res && res.EC === 0) {
@@ -67,12 +69,12 @@ const TableQuiz = (props) => {
                 setDataUpdate={setDataUpdate}
             />
 
-            <ModalDeleteQuiz 
-            show={isShowModalDelete}
-            setShow={setIsShowModalDelete}
-            dataDelete={dataDelete}
-            setDataDelete={setDataDelete}
-            fetchQuiz={fetchQuiz}
+            <ModalDeleteQuiz
+                show={isShowModalDelete}
+                setShow={setIsShowModalDelete}
+                dataDelete={dataDelete}
+                setDataDelete={setDataDelete}
+                fetchQuiz={fetchQuiz}
             />
         </>
     )

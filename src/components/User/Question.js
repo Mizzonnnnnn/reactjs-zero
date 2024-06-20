@@ -4,12 +4,13 @@ const Question = (props) => {
     const { data, index } = props;
 
     if (_.isEmpty(data)) {
-        return (<></>)
+        return (<></>);
     }
 
-    const handlehhanleCheckbox = (event, aid, qid) => {
+    const handleCheckbox = (event, aid, qid) => {
         props.handleCheckbox(aid, qid);
-    }
+    };
+
     return (
         <>
             {data.image ?
@@ -22,29 +23,28 @@ const Question = (props) => {
             <div className="question">Question {index + 1}: {data.questionDescription}?</div>
             <div className="answer">
                 {data.answers && data.answers.length > 0 &&
-                    data.answers.map((a, index) => {
+                    data.answers.map((a, idx) => {
                         return (
                             <div
-                                key={`answer-$${index}`}
+                                key={`answer-${idx}`}
                                 className="a-child">
-                                <div class="form-check">
+                                <div className="form-check">
                                     <input
-                                        class="form-check-input"
+                                        className="form-check-input"
                                         type="checkbox"
                                         checked={a.isSelected}
-                                        onChange={(event) => handlehhanleCheckbox(event, a.id, data.questionId)} />
-                                    <label class="form-check-label" >
+                                        onChange={(event) => handleCheckbox(event, a.id, data.questionId)} />
+                                    <label className="form-check-label" >
                                         {a.description}
                                     </label>
                                 </div>
-
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
         </>
-    )
-}
+    );
+};
 
 export default Question;
