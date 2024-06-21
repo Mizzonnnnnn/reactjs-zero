@@ -8,9 +8,10 @@ import { v4 as uuidv4 } from 'uuid';
 import _, { values } from 'lodash';
 import Lightbox from "react-awesome-lightbox";
 import { getAllQuizForAdmin, postCreateNewQuestionForQuiz, postCreateNewAnswerForQuetion } from '../../../../services/apiService';
+import { toast } from 'react-toastify';
 
 const ManageQuestion = (props) => {
-    const [questions, setQuestion] = useState([
+    const initQuestion = [
         {
             id: uuidv4(),
             description: '',
@@ -24,7 +25,8 @@ const ManageQuestion = (props) => {
                 }
             ]
         }
-    ]);
+    ]
+    const [questions, setQuestion] = useState(initQuestion);
     const [previewImage, setPreviewImage] = useState({
         title: '',
         url: ''
@@ -149,25 +151,66 @@ const ManageQuestion = (props) => {
 
     const handleSubmitQuestionForQuiz = async () => {
         // todo
+        if (_.isEmpty(selectedQuiz)) {
+            toast.error("Please choose a Quiz")
+            return;
+        }
+
+        // validate answer
+        let isValidAnswer = true;
+        let indexQ = 0; let indexA = 0;
+        for (let i = 0; i < questions.length; i++) {
+            for (let j = 0; j < questions[i].answers.length; j++) {
+                if (!questions[i].answers[j].description) {
+                    indexA = j
+                    isValidAnswer = false;
+                    break;
+                }
+            }
+            indexQ = i;
+            if (isValidAnswer === false) break;
+        }
+        if (isValidAnswer === false) {
+            toast.error(`Not empty Answer ${indexA + 1} at Question ${indexQ + 1}`)
+            return;
+        }
+
+        // validate question
+        let isValidQ1 = true;
+        let indexQ1 = 0;
+        for (let i = 0; i < questions.length; i++) {
+            if (!questions[i].description) {
+                isValidQ1 = false;
+                indexQ1 = i;
+                break;
+            }
+        }
+        if (isValidQ1 === false) {
+            toast.error(`Not empty description for Question ${indexQ1 + 1}`);
+            return;
+        }
+
         // validate data
         // submit question
-        await Promise.all(questions.map(async (question) => {
+        for (const question of questions) {
             const q = await postCreateNewQuestionForQuiz(
                 +selectedQuiz.value,
                 question.description,
                 question.imageFile
-            );
+            )
             // submit answer
-            await Promise.all(question.answers.map(async (answer) => {
+            for (const answer of question.answers) {
                 await postCreateNewAnswerForQuetion(
                     answer.description,
                     answer.isCorrect,
                     q.DT.id
-                );
-            }));
-        }));
+                )
+            }
+        }
+        toast.success('Create questions and answers succed!')
+        setQuestion(initQuestion);
     };
-    console.log('check answer', questions)
+    // console.log('check answer', questions)
     return (
         <div className="questions-container">
             <div className="title">
@@ -247,6 +290,7 @@ const ManageQuestion = (props) => {
                                         value={answer.description}
                                         type="text"
                                         className="form-control"
+                                        // is-invalid
                                         placeholder="description answer"
                                         onChange={(event) => handleAnswerQuestion('INPUT', answer.id, question.id, event.target.value)}
                                     />
