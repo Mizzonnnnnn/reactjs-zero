@@ -1,0 +1,101 @@
+.questions-container {
+    padding: 15px;
+
+    .title {
+        font-size: 25px;
+    }
+
+    .add-new-question {
+        .form-group {
+            width: 50%;
+        }
+
+        .questions-content {
+            display    : flex;
+            gap        : 20px;
+            align-items: center;
+
+            .description {
+                width: 50%;
+            }
+
+            .group-upload {
+                display        : flex;
+                align-items    : center;
+                justify-content: center;
+                gap            : 10px;
+
+                .uploadFile {
+                    display    : flex;
+                    align-items: center;
+                    gap        : 5px;
+
+                    .icon-upload {
+                        font-size: 25px;
+                        cursor   : pointer;
+                    }
+                }
+
+                .upload {
+                    display    : flex;
+                    align-items: center;
+
+                    .uploadName {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+
+
+            .icon {
+                cursor       : pointer;
+                font-size    : 25px;
+                margin-bottom: 7px;
+
+                .icon-add {
+                    color       : rgb(91, 128, 36);
+                    margin-right: 5px;
+                }
+
+                .icon-remove {
+                    color: red;
+                }
+            }
+        }
+
+        .answer-content {
+            align-items : center;
+            padding-top : 10px;
+            padding-left: 10px;
+            display     : flex;
+            gap         : 10px;
+
+
+            .iscorrect {
+                font-size: 18px
+            }
+
+            .answer-name {
+                width: 50%;
+            }
+
+            .btn-group {
+                cursor       : pointer;
+                font-size    : 25px;
+                margin-bottom: 7px;
+
+                .icon-add {
+                    color       : rgb(91, 128, 36);
+                    margin-right: 5px;
+                }
+
+                .icon-remove {
+                    color: red;
+                }
+            }
+
+
+        }
+    }
+}

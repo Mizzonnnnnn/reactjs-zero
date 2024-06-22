@@ -5,6 +5,8 @@ import { postCreateNewQuiz } from '../../../../services/apiService';
 import { toast } from 'react-toastify';
 import TableQuiz from './TableQuiz';
 import Accordion from 'react-bootstrap/Accordion';
+import QuizQA from './QuizQA';
+import AssignQuiz from './AssignQuiz';
 
 const options = [
     { value: 'EASY', label: 'EASY' },
@@ -45,11 +47,11 @@ const ManageQuiz = (props) => {
 
     return (
         <div className="quiz-container">
-            <div className="add-new">
-                <Accordion defaultActiveKey="0">
-                    <Accordion.Item eventKey="0" >
-                        <Accordion.Header className="title">Manage Quizes</Accordion.Header>
-                        <Accordion.Body>
+            <Accordion defaultActiveKey="0" alwaysOpen>
+                <Accordion.Item eventKey="0" >
+                    <Accordion.Header className="title">Manage Quizes</Accordion.Header>
+                    <Accordion.Body>
+                        <div className="add-new">
                             <fieldset className="border rounded-3 p-3">
                                 <legend className="float-none w-auto px-3 ">Add New User</legend>
                                 <div className="form-floating mb-3">
@@ -99,14 +101,25 @@ const ManageQuiz = (props) => {
                                     >Save</button>
                                 </div>
                             </fieldset>
-                        </Accordion.Body>
-                    </Accordion.Item>
-                </Accordion>
-            </div>
-
-            <div className="list-detail">
-                <TableQuiz />
-            </div>
+                        </div>
+                        <div className="list-detail">
+                            <TableQuiz />
+                        </div>
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="1" >
+                    <Accordion.Header className="title">Update Q/A Quizzes</Accordion.Header>
+                    <Accordion.Body>
+                        <QuizQA />
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2" >
+                    <Accordion.Header className="title">Assign to Users</Accordion.Header>
+                    <Accordion.Body>
+                        <AssignQuiz />
+                    </Accordion.Body>
+                </Accordion.Item>
+            </Accordion>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import Select from 'react-select';
-import './ManageQuestion.scss';
+import './QuizQA.scss';
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { FiPlusCircle, FiPlusSquare, FiMinusSquare } from "react-icons/fi";
 import { FcAddImage } from "react-icons/fc";
@@ -10,7 +10,7 @@ import Lightbox from "react-awesome-lightbox";
 import { getAllQuizForAdmin, postCreateNewQuestionForQuiz, postCreateNewAnswerForQuetion } from '../../../../services/apiService';
 import { toast } from 'react-toastify';
 
-const ManageQuestion = (props) => {
+const QuizQA = (props) => {
     const initQuestion = [
         {
             id: uuidv4(),
@@ -210,21 +210,17 @@ const ManageQuestion = (props) => {
         toast.success('Create questions and answers succed!')
         setQuestion(initQuestion);
     };
-    // console.log('check answer', questions)
+
     return (
         <div className="questions-container">
-            <div className="title">
-                <b>Manage Questions</b>
-            </div>
-            <hr />
-
-            <div className="add-new-question mt-4">
+            <div className="add-new-question ">
                 <div className='form-group'>
-                    Select Quiz
+                    <label>Select Quiz</label>
                     <Select
-                        defaultValue={selectedQuiz}
+                        value={selectedQuiz}
                         onChange={setSelectedQuiz}
                         options={listQuiz}
+                        placeholder={"Quiz..."}
                         isClearable={true}
                     />
                 </div>
@@ -256,8 +252,7 @@ const ManageQuestion = (props) => {
                                 </span>
                                 <input
                                     id={`${question.id}`}
-                                    type="file"
-                                    hidden
+                                    type="file" hidden
                                     onChange={(event) => handleOnChangeFile(question.id, event)}
                                 />
                             </div>
@@ -334,4 +329,4 @@ const ManageQuestion = (props) => {
     );
 };
 
-export default ManageQuestion;
+export default QuizQA;
