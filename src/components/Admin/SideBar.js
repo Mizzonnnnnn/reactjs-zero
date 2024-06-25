@@ -35,6 +35,8 @@ const SideBar = (props) => {
                 <SidebarHeader>
                     <div
                         style={{
+                            display: 'flex',
+                            alignItems: 'center',
                             padding: '24px',
                             textTransform: 'uppercase',
                             fontWeight: 'bold',
@@ -47,7 +49,7 @@ const SideBar = (props) => {
                         }}
                     >
                         <DiReact size={'3em'} color={"00bfff"} />
-                        <span onClick={() => hanbleBackHome()}>Mizzon</span>
+                        <span className='op' onClick={() => hanbleBackHome()}>Mizzon</span>
                     </div>
                 </SidebarHeader>
 

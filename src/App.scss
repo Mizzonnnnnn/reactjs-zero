@@ -57,6 +57,12 @@ body {
     }
   }
 
+  .main-container {
+    .app-content {
+      height: calc(100vh - 40px);
+    }
+  }
+
   .homepage-container {
     .homepage-content {
       padding       : 100px;

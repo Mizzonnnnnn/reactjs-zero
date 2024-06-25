@@ -1,6 +1,7 @@
 import Select from 'react-select';
 import { useState, useEffect } from 'react';
-import { getAllQuizForAdmin, getAllUser } from '../../../../services/apiService';
+import { getAllQuizForAdmin, getAllUser, postAssignQuiz } from '../../../../services/apiService';
+import { toast } from 'react-toastify';
 
 const AssignQuiz = (props) => {
     const [selectedQuiz, setSelectedQuiz] = useState(null);
@@ -13,13 +14,15 @@ const AssignQuiz = (props) => {
         fetchUser();
     }, []);
 
+
+
     const fetchQuiz = async () => {
         let res = await getAllQuizForAdmin();
         if (res && res.EC === 0) {
             let newQuiz = res.DT.map(item => {
                 return {
                     value: item.id,
-                    label: `${item.id} - ${item.description}`
+                    label: `${item.id} - ${item.name}`
                 };
             });
             setListQuiz(newQuiz);
@@ -27,15 +30,25 @@ const AssignQuiz = (props) => {
     };
     const fetchUser = async () => {
         let res = await getAllUser();
-        console.log(res);
         if (res && res.EC === 0) {
             let newUser = res.DT.map(item => {
                 return {
                     value: item.id,
-                    label: `${item.id} - ${item.username}`
+                    label: `${item.id} - ${item.username} - ${item.email}`
                 }
             })
             setListUser(newUser)
+        }
+    }
+
+    const handleAssign = async () => {
+        let res = await postAssignQuiz(selectedQuiz.value, selectedUser.value);
+        if (res && res.EC === 0) {
+            toast.success(res.EM)
+            setSelectedQuiz(null)
+            setSelectedUser(null)
+        } else {
+            toast.error(res.EM)
         }
     }
     return (
@@ -62,7 +75,10 @@ const AssignQuiz = (props) => {
                 />
             </div>
             <div className='mt-3'>
-                <button className='btn btn-warning'>Assign</button>
+                <button
+                    className='btn btn-warning'
+                    onClick={() => handleAssign()}
+                >Assign</button>
             </div>
         </div>
     )
