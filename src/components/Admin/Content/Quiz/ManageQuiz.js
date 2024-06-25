@@ -53,7 +53,7 @@ const ManageQuiz = (props) => {
                     <Accordion.Body>
                         <div className="add-new">
                             <fieldset className="border rounded-3 p-3">
-                                <legend className="float-none w-auto px-3 ">Add New User</legend>
+                                <legend className="float-none w-auto px-3 ">Add New Quiz</legend>
                                 <div className="form-floating mb-3">
                                     <input
                                         type="text"
