@@ -3,7 +3,7 @@ import './QuizQA.scss';
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { FiPlusCircle, FiPlusSquare, FiMinusSquare } from "react-icons/fi";
 import { FcAddImage } from "react-icons/fc";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 import Lightbox from "react-awesome-lightbox";
@@ -39,11 +39,6 @@ const QuizQA = (props) => {
         fetchQuiz();
     }, []);
 
-    useEffect(() => {
-        if (selectedQuiz && selectedQuiz) {
-            fetchQuizWithQA();
-        }
-    }, [selectedQuiz]);
 
     // return a promise that resolves with a File instance
     function urltoFile(url, filename, mimeType) {
@@ -52,22 +47,30 @@ const QuizQA = (props) => {
             .then(buf => new File([buf], filename, { type: mimeType }));
     }
 
-    const fetchQuizWithQA = async () => {
-        let res = await getQuizWithQA(selectedQuiz.value);
-        if (res && res.EC === 0) {
-            // convert base64 to file object
-            let newQA = [];
-            for (let i = 0; i < res.DT.qa.length; i++) {
-                let q = res.DT.qa[i]
-                if (q.imageFile) {
-                    q.imageName = `Question-${q.id}.png`;
-                    q.imageFile = await urltoFile(`data:image/png;base64,${q.imageFile}`, `Question-${q.id}.png`, `image/png`);
+    const fetchQuizWithQA = useCallback(async () => {
+        if (selectedQuiz) {
+            let res = await getQuizWithQA(selectedQuiz.value);
+            if (res && res.EC === 0) {
+                // convert base64 to file object
+                let newQA = [];
+                for (let i = 0; i < res.DT.qa.length; i++) {
+                    let q = res.DT.qa[i]
+                    if (q.imageFile) {
+                        q.imageName = `Question-${q.id}.png`;
+                        q.imageFile = await urltoFile(`data:image/png;base64,${q.imageFile}`, `Question-${q.id}.png`, `image/png`);
+                    }
+                    newQA.push(q);
                 }
-                newQA.push(q);;
+                setQuestion(newQA);
             }
-            setQuestion(newQA)
         }
-    };
+    }, [selectedQuiz]);
+    
+    useEffect(() => {
+        if (selectedQuiz && selectedQuiz) {
+            fetchQuizWithQA();
+        }
+    }, [selectedQuiz, fetchQuizWithQA]);
 
     const fetchQuiz = async () => {
         let res = await getAllQuizForAdmin();
