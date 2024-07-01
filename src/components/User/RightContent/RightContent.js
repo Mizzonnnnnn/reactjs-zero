@@ -1,17 +1,32 @@
+import { useState } from "react";
+import CountDown from "./CountDown"
 
 const RightContent = (props) => {
-    const { dataQuiz } = props;
+    const { dataQuiz, handleFinshQuiz,show } = props;
+    const [isPaused, setIsPaused] = useState(false);
+
+    const onTimeUp = () => {
+        handleFinshQuiz();
+    }
+    const onTimeMust = () => {
+        setIsPaused(!isPaused)
+    }
+
     return (
         <>
             <div className="main-timer">
-                10:10
+                <CountDown
+                    onTimeUp={onTimeUp}
+                    onTimeMust={onTimeMust}
+                    show={show}
+                />
             </div>
             <div className="main-questions">
                 {
                     dataQuiz && dataQuiz.length > 0 &&
                     dataQuiz.map((item, index) => {
                         return (
-                            <div className="question" key={item.id}>{index + 1}</div>
+                            <div className="question" key={index}>{index + 1}</div>
                         )
 
                     })

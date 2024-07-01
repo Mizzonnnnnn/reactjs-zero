@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { getDataQuiz, postSubmitQuiz } from "../../services/apiService";
 import _ from "lodash";
@@ -15,11 +15,39 @@ const DetailQuiz = () => {
     const [index, setIndex] = useState(0);
     const [isShowMoalResult, setIsShowMoalResult] = useState(false)
     const [dataModalResult, setDataModalResult] = useState({})
-    useEffect(() => {
-        fetchQuestions();
-    }, [quizId])
 
-    const fetchQuestions = async () => {
+
+    // useEffect(() => {
+    //     fetchQuestions();
+    // }, [quizId])
+
+    // const fetchQuestions = async () => {
+    //     const res = await getDataQuiz(quizId);
+    //     if (res.EC === 0) {
+    //         let raw = res.DT;
+    //         let data = _.chain(raw)
+    //             // Group the elements of Array based on `color` property
+    //             .groupBy("id")
+    //             // `key` is group's name (color), `value` is the array of objects
+    //             .map((value, key) => {
+    //                 let answers = [];
+    //                 let questionDescription, image = null;
+    //                 value.forEach((item, index) => {
+    //                     if (index === 0) {
+    //                         questionDescription = item.description;
+    //                         image = item.image;
+    //                     }
+    //                     item.answers.isSelected = false;
+    //                     answers.push(item.answers)
+    //                 })
+    //                 return { questionId: key, answers: answers, questionDescription, image }
+    //             })
+    //             .value()
+    //         setDataQuiz(data);
+    //     }
+    // }
+
+    const fetchQuestions = useCallback(async () => {
         const res = await getDataQuiz(quizId);
         if (res.EC === 0) {
             let raw = res.DT;
@@ -43,8 +71,12 @@ const DetailQuiz = () => {
                 .value()
             setDataQuiz(data);
         }
-    }
+    }, [quizId]);
 
+
+    useEffect(() => {
+        fetchQuestions();
+    }, [fetchQuestions]); // Sử dụng fetchQuestions như một dependency
 
     const handlePrev = () => {
         if (index - 1 < 0) {
@@ -147,7 +179,11 @@ const DetailQuiz = () => {
             </div>
 
             <div className="right-content">
-                <RightContent dataQuiz={dataQuiz} />
+                <RightContent
+                    dataQuiz={dataQuiz}
+                    handleFinshQuiz={handleFinshQuiz}
+                    show={isShowMoalResult}
+                />
             </div>
             <div>
                 <ModalResultUser
