@@ -81,10 +81,20 @@
                 cursor         : pointer;
 
                 &:hover {
-                    color           : aliceblue;
-                    background-color: green;
+                    background-color: rgb(117, 192, 117);
                 }
 
+                &.selected {
+                    background-color: rgb(194, 211, 211);
+                }
+
+                &.click {
+                    color: red;
+
+                    &:hover {
+                        background-color: white;
+                    }
+                }
             }
         }
     }

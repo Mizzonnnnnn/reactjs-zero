@@ -183,6 +183,7 @@ const DetailQuiz = () => {
                     dataQuiz={dataQuiz}
                     handleFinshQuiz={handleFinshQuiz}
                     show={isShowMoalResult}
+                    setIndex={setIndex}
                 />
             </div>
             <div>
