@@ -36,7 +36,6 @@ const RightContent = (props) => {
         if (question && question.answers.length > 0) {
             let isUnAnswered = question.answers.some(a => a.isSelected !== false);
             if (isUnAnswered === true) {
-                return;
             }
         }
         refDiv.current[index].className = "question click"
