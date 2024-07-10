@@ -6,7 +6,7 @@ import { postRegister } from '../../services/apiService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiTwotoneEye, AiTwotoneEyeInvisible } from "react-icons/ai";
-
+import Language from '../Header/Language';
 const Register = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -68,6 +68,9 @@ const Register = () => {
                 <div className='head'>
                     <label>Already have an account?</label>
                     <button onClick={() => handleBackLogin()}> Login</button>
+                    <label >
+                        <Language />
+                    </label>
                 </div>
                 <div>
                     <h2 className='title-sign'> Get better data with conversational forms, surveys, quizzes & more.</h2>

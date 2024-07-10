@@ -7,7 +7,7 @@ import { FiEyeOff, FiEye } from "react-icons/fi";
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
 import { FaSpinner } from "react-icons/fa";
-
+import Language from '../Header/Language';
 const Login = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -69,8 +69,9 @@ const Login = (props) => {
     return (
         <div className='login-container' >
             <div className='header'>
-                <span>Don't have an account yet?    </span>
+                <span>Don't have an account yet?</span>
                 <button onClick={() => handleBackSignUp()}>Sign up</button>
+                <Language />
             </div>
             <div className='title col-4 mx-auto' onClick={() => handleBackHome()}>
                 Mizzon, Hi
