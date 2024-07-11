@@ -6,7 +6,7 @@ import ManageUser from './components/Admin/Content/ManageUser';
 import DashBoard from './components/Admin/Content/DashBoard';
 import Login from './components/Auth/Login';
 import { ToastContainer } from 'react-toastify';
-
+import { Suspense } from 'react';
 import {
     Routes,
     Route
@@ -26,7 +26,7 @@ const Notfound = () => {
 
 const Layout = (props) => {
     return (
-        <>
+        <Suspense fallback="...is loading">
             <Routes>
                 <Route path="/" element={<App />}>
                     <Route index element={<HomePage />} />
@@ -67,7 +67,7 @@ const Layout = (props) => {
                 draggable
                 pauseOnHover
             />
-        </>
+        </Suspense>
     )
 }
 
