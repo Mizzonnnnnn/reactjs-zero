@@ -30,3 +30,18 @@
     }
   }
 }
+
+.sidebarHeader {
+  display        : flex;
+  align-items    : center;
+  padding        : 9px;
+  font-weight    : bold;
+  font-size      : 14px;
+  letter-spacing : 1px;
+  overflow       : hidden;
+  text-overflow  : ellipsis;
+  white-space    : nowrap;
+  cursor         : pointer;
+  padding-right  : 21px;
+  justify-content: center;
+}

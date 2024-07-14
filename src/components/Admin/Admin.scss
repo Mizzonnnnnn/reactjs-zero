@@ -9,8 +9,19 @@
         width: 100%;
 
         .admin-header {
-            height   : 40px;
-            // border: 1px solid rgb(91, 126, 170);
+            height         : 60px;
+            display        : flex;
+            justify-content: space-between;
+            align-items    : center;
+            border         : 1px solid #ccc;
+            padding        : 0 20px 0 10px;
+
+            .rightside {
+                display: flex;
+                gap    : 15px;
+            }
+
+            .leftside {}
         }
 
         .admin-main {

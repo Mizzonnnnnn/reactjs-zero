@@ -16,37 +16,6 @@ const DetailQuiz = () => {
     const [isShowMoalResult, setIsShowMoalResult] = useState(false)
     const [dataModalResult, setDataModalResult] = useState({})
 
-
-    // useEffect(() => {
-    //     fetchQuestions();
-    // }, [quizId])
-
-    // const fetchQuestions = async () => {
-    //     const res = await getDataQuiz(quizId);
-    //     if (res.EC === 0) {
-    //         let raw = res.DT;
-    //         let data = _.chain(raw)
-    //             // Group the elements of Array based on `color` property
-    //             .groupBy("id")
-    //             // `key` is group's name (color), `value` is the array of objects
-    //             .map((value, key) => {
-    //                 let answers = [];
-    //                 let questionDescription, image = null;
-    //                 value.forEach((item, index) => {
-    //                     if (index === 0) {
-    //                         questionDescription = item.description;
-    //                         image = item.image;
-    //                     }
-    //                     item.answers.isSelected = false;
-    //                     answers.push(item.answers)
-    //                 })
-    //                 return { questionId: key, answers: answers, questionDescription, image }
-    //             })
-    //             .value()
-    //         setDataQuiz(data);
-    //     }
-    // }
-
     const fetchQuestions = useCallback(async () => {
         const res = await getDataQuiz(quizId);
         if (res.EC === 0) {
@@ -66,6 +35,7 @@ const DetailQuiz = () => {
                         item.answers.isSelected = false;
                         answers.push(item.answers)
                     })
+                    answers = _.orderBy(answers, ["id"], ["asc"])
                     return { questionId: key, answers: answers, questionDescription, image }
                 })
                 .value()

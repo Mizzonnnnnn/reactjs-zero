@@ -34,19 +34,7 @@ const SideBar = (props) => {
             >
                 <SidebarHeader>
                     <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            padding: '24px',
-                            textTransform: 'uppercase',
-                            fontWeight: 'bold',
-                            fontSize: 14,
-                            letterSpacing: '1px',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                            cursor: 'pointer'
-                        }}
+                        className='sidebarHeader'
                     >
                         <DiReact size={'3em'} color={"00bfff"} />
                         <span className='op' onClick={() => hanbleBackHome()}>Mizzon</span>
@@ -94,12 +82,12 @@ const SideBar = (props) => {
                             rel="noopener noreferrer"
                         >
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                                &#169; Mizzonnnnnn
+                                &#169; Mizzon
                             </span>
                         </a>
                     </div>
                 </SidebarFooter>
-            </ProSidebar>
+            </ProSidebar >
         </>
     )
 }
