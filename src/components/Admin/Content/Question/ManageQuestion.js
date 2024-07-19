@@ -9,6 +9,7 @@ import _ from 'lodash';
 import Lightbox from "react-awesome-lightbox";
 import { getAllQuizForAdmin, postCreateNewQuestionForQuiz, postCreateNewAnswerForQuetion } from '../../../../services/apiService';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const ManageQuestion = (props) => {
     const initQuestion = [
@@ -34,6 +35,7 @@ const ManageQuestion = (props) => {
     const [selectedQuiz, setSelectedQuiz] = useState(null);
     const [isPreviewImage, setIsPreviewImage] = useState(false);
     const [listQuiz, setListQuiz] = useState([]);
+    const { t } = useTranslation()
 
     useEffect(() => {
         fetchQuiz();
@@ -152,7 +154,7 @@ const ManageQuestion = (props) => {
     const handleSubmitQuestionForQuiz = async () => {
         // todo
         if (_.isEmpty(selectedQuiz)) {
-            toast.error("Please choose a Quiz")
+            toast.error(t('managequestion.submit.pls'))
             return;
         }
 
@@ -171,7 +173,7 @@ const ManageQuestion = (props) => {
             if (isValidAnswer === false) break;
         }
         if (isValidAnswer === false) {
-            toast.error(`Not empty Answer ${indexA + 1} at Question ${indexQ + 1}`)
+            toast.error(`${t('managequestion.submit.nea')} ${indexA + 1} ${t('managequestion.submit.aq')} ${indexQ + 1}`)
             return;
         }
 
@@ -186,7 +188,7 @@ const ManageQuestion = (props) => {
             }
         }
         if (isValidQ1 === false) {
-            toast.error(`Not empty description for Question ${indexQ1 + 1}`);
+            toast.error(`${t('managequestion.submit.ned')} ${indexQ1 + 1}`);
             return;
         }
 
@@ -207,20 +209,20 @@ const ManageQuestion = (props) => {
                 )
             }
         }
-        toast.success('Create questions and answers succed!')
+        toast.success(t('managequestion.submit.suc'))
         setQuestion(initQuestion);
     };
     // console.log('check answer', questions)
     return (
         <div className="questions-container">
             <div className="title">
-                <b>Manage Questions</b>
+                <b>{t('managequestion.title1')}</b>
             </div>
             <hr />
 
             <div className="add-new-question mt-4">
                 <div className='form-group'>
-                    Select Quiz
+                    {t('managequestion.title2')}
                     <Select
                         defaultValue={selectedQuiz}
                         onChange={setSelectedQuiz}
@@ -229,7 +231,7 @@ const ManageQuestion = (props) => {
                     />
                 </div>
 
-                <div className='mt-4'>Add questions: </div>
+                <div className='mt-4'>{t('managequestion.title4')}</div>
                 {questions && questions.length > 0 && questions.map((question, index) => (
                     <div key={question.id} className='q-main mb-4'>
                         <div className='questions-content'>
@@ -241,7 +243,7 @@ const ManageQuestion = (props) => {
                                     value={question.description}
                                     onChange={(event) => handleOnChange('QUESTION', question.id, event.target.value)}
                                 />
-                                <label>Question {index + 1} 's description</label>
+                                <label>{t('managequestion.title5')} {index + 1} {t('managequestion.title6')}</label>
                             </div>
 
                             <div className='group-upload'>
@@ -251,7 +253,7 @@ const ManageQuestion = (props) => {
                                 <span className='upload'>
                                     {question.imageName ?
                                         <span className='uploadName' onClick={() => handlePreviewImage(question.id)}>{question.imageName}</span>
-                                        : "0 file is upload"
+                                        : t('managequestion.title9')
                                     }
                                 </span>
                                 <input
@@ -295,7 +297,7 @@ const ManageQuestion = (props) => {
                                         placeholder="description answer"
                                         onChange={(event) => handleAnswerQuestion('INPUT', answer.id, question.id, event.target.value)}
                                     />
-                                    <label>Answer {index + 1}</label>
+                                    <label>{t('managequestion.title7')} {index + 1}</label>
                                 </div>
 
                                 <div className='btn-group'>
@@ -325,7 +327,7 @@ const ManageQuestion = (props) => {
                             className='btn btn-success'
                             onClick={handleSubmitQuestionForQuiz}
                         >
-                            Save Question
+                            {t('managequestion.title8')}
                         </button>
                     </div>
                 )}

@@ -8,20 +8,21 @@ import {
     SidebarFooter,
     SidebarContent,
 } from 'react-pro-sidebar';
-
 import { useNavigate } from 'react-router-dom';
 import { FaGem } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg3.jpg';
 import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
-
 import './SideBar.scss';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 const SideBar = (props) => {
     const navigate = useNavigate();
     const hanbleBackHome = () => {
         navigate('/')
     }
+    const { t } = useTranslation();
     const { collapsed, toggled, handleToggleSidebar } = props;
     return (
         <>
@@ -45,23 +46,23 @@ const SideBar = (props) => {
                     <Menu iconShape="circle">
                         <MenuItem
                             icon={<MdDashboard />}
-                            suffix={<span className='badge red'>New</span>}
+                        // suffix={<span className='badge red'>New</span>}
                         >
-                            <Link to="/admins">Dashboard</Link>
+                            <Link to="/admins">{t('sidebar.title1')}</Link>
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
                             icon={<FaGem />}
-                            title="Features"
+                            title={t('sidebar.title5')}
                         >
                             <MenuItem>
-                                <Link to="/admins/manage-users">Quản lý Users</Link>
+                                <Link to="/admins/manage-users">{t('sidebar.title2')}</Link>
                             </MenuItem>
                             <MenuItem >
-                                <Link to="/admins/manage-quizes"></Link>Quản lý Bài Quiz</MenuItem>
+                                <Link to="/admins/manage-quizes"></Link>{t('sidebar.title3')}</MenuItem>
                             <MenuItem>
-                                <Link to="/admins/manage-questions">Quản lý Câu Hỏi</Link>
+                                <Link to="/admins/manage-questions">{t('sidebar.title4')}</Link>
                             </MenuItem>
                         </SubMenu>
 

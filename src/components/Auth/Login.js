@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
 import { FaSpinner } from "react-icons/fa";
 import Language from '../Header/Language';
+import { useTranslation } from 'react-i18next';
 const Login = (props) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const Login = (props) => {
     const [isShowPassword, setIsShowPassword] = useState(false)
     const [isShowLoad, setIsShowLoad] = useState(false);
     const dispatch = useDispatch()
-
+    const { t } = useTranslation()
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -28,11 +29,11 @@ const Login = (props) => {
 
         const isValidEmail = validateEmail(email);
         if (!isValidEmail) {
-            toast.error("Invalid Email!")
+            toast.error(t('login.ie'))
             return;
         }
         if (!password) {
-            toast.error("Invalid Password");
+            toast.error(t('login.ip'));
         }
 
         setIsShowLoad(true)
@@ -67,70 +68,58 @@ const Login = (props) => {
         }
     }
     return (
-        <div className='login-container' >
+        <div className='login-container'>
             <div className='header'>
-                <span>Don't have an account yet?</span>
-                <button onClick={() => handleBackSignUp()}>Sign up</button>
+                <span>{t('login.title1')}</span>
+                <button onClick={handleBackSignUp}>{t('login.title2')}</button>
                 <Language />
             </div>
-            <div className='title col-4 mx-auto' onClick={() => handleBackHome()}>
-                Mizzon, Hi
+            <div className='title col-4 mx-auto' onClick={handleBackHome}>
+                {t('login.signUp')}
             </div>
             <div className='welcome col-4 mx-auto'>
-                Hello, who's this?
+                {t('login.hello')}
             </div>
-            <div className='content-form col-4 mx-auto' >
+            <div className='content-form col-4 mx-auto'>
                 <div className='form-group'>
-                    <label>Email</label>
+                    <label>{t('login.email')}</label>
                     <input
-                        type={"email"}
-
+                        type="email"
                         className='form-control'
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
-                    ></input>
+                    />
                 </div>
                 <div className='form-group pass-group'>
-                    <label>Password</label>
-
+                    <label>{t('login.password')}</label>
                     <input
-                        type={isShowPassword === true ? "text" : "password"}
+                        type={isShowPassword ? "text" : "password"}
                         className='form-control'
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
-                        onKeyDown={(event) => handleKeyDown(event)}
-                    ></input>
-                    {
-                        isShowPassword ?
-                            <span className='icons-eye'
-                                onClick={() => setIsShowPassword(false)}>
-                                <FiEye />
-                            </span> :
-
-                            <span className='icons-eye'
-                                onClick={() => setIsShowPassword(true)}>
-                                <FiEyeOff />
-                            </span>
-                    }
+                        onKeyDown={handleKeyDown}
+                    />
+                    <span className='icons-eye' onClick={() => setIsShowPassword(!isShowPassword)}>
+                        {isShowPassword ? <FiEye /> : <FiEyeOff />}
+                    </span>
                 </div>
-                <span className='forgot-password'>Forgot password?</span>
+                <span className='forgot-password'>{t('login.forgotPassword')}</span>
                 <div>
                     <button
                         className='btn-submit'
-                        onClick={() => handleLogin()}
+                        onClick={handleLogin}
                         disabled={isShowLoad}
                     >
-                        {isShowLoad === true && <FaSpinner className='loaderIcon' />}
-
-                        <span>Log in to Mizzon</span>
+                        {isShowLoad && <FaSpinner className='loaderIcon' />}
+                        <span>{t('login.loginToMizzon')}</span>
                     </button>
                 </div>
                 <div className='back text-center'>
-                    <span onClick={() => handleBackHome()}>&#60;&#60; Go to Homepage</span>
+                    <span onClick={handleBackHome}>&#60;&#60; {t('login.goToHomepage')}</span>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Login;

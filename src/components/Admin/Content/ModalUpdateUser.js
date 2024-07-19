@@ -7,17 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import _ from 'lodash';
 import { putUpdateUser } from '../../../services/apiService';
+import { useTranslation } from 'react-i18next';
 
 const ModalUpdateUser = (props) => {
     const { show, setShow, dataUpdate, currentPage } = props;
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [image, setImage] = useState("");
     const [role, setRole] = useState("USER");
     const [previewImage, setPreviewImage] = useState("");
-
+    const { t } = useTranslation();
 
     useEffect(() => {
 
@@ -34,7 +34,7 @@ const ModalUpdateUser = (props) => {
     }, [dataUpdate])
     const handleClose = () => {
         // khi bam close thi nó sẽ làm rỗng dữ liệu
-setShow(false);
+        setShow(false);
         setEmail("");
         setPassword("");
         setUsername("");
@@ -42,7 +42,7 @@ setShow(false);
         setRole("USER");
         setPreviewImage("");
         props.resetUpdateData();
-        
+
     };
 
 
@@ -79,12 +79,12 @@ setShow(false);
                 className='modal-add-users'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Update new User</Modal.Title>
+                    <Modal.Title>{t('modalupdateuser.title1')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body size>
                     {<form className="row g-3">
                         <div className="col-md-6">
-                            <label className="form-label">Email</label>
+                            <label className="form-label">{t('modalupdateuser.title2.Email')}</label>
                             <input
                                 type="email"
                                 className="form-control"
@@ -95,7 +95,7 @@ setShow(false);
                         </div>
 
                         <div className="col-md-6">
-                            <label className="form-label">Password</label>
+                            <label className="form-label">{t('modalupdateuser.title2.Password')}</label>
                             <input
                                 type="password"
                                 className="form-control"
@@ -106,7 +106,7 @@ setShow(false);
                         </div>
 
                         <div className="col-md-6">
-                            <label className="form-label">UserName</label>
+                            <label className="form-label">{t('modalupdateuser.title2.UserName')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -116,18 +116,18 @@ setShow(false);
                         </div>
 
                         <div className="col-md-4">
-                            <label className="form-label">Role</label>
+                            <label className="form-label">{t('modalupdateuser.title2.Role.title')}</label>
                             <select className="form-select"
                                 onChange={(event) => setRole(event.target.value)}
                                 value={role}>
-                                <option value="ADMIN">ADMIN</option>
-                                <option value="USER">USER</option>
+                                <option value="ADMIN">{t('modalupdateuser.title2.Role.admin')}</option>
+                                <option value="USER">{t('modalupdateuser.title2.Role.user')}</option>
                             </select>
                         </div>
 
                         <div className='col-md-12'>
                             <label htmlFor="fileInput" className='form-label label-upload'>
-                                <FcPlus />Upload File Image
+                                <FcPlus />{t('modalupdateuser.title2.uploadfile')}
                             </label>
                             <input
                                 type='file'
@@ -142,19 +142,17 @@ setShow(false);
                                 ?
                                 <img src={previewImage} alt='nhin cai lol gi, bat ngo lam ak' />
                                 :
-                                <span>Preview Image</span>
+                                <span>{t('modalupdateuser.title2.previewimage')}</span>
                             }
                         </div>
-
-
                     </form>}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('modalupdateuser.title3')}
                     </Button>
                     <Button variant="primary" onClick={handleSubSmitCreateUser}>
-                        Save
+                        {t('modalupdateuser.title4')}
                     </Button>
                 </Modal.Footer>
             </Modal >

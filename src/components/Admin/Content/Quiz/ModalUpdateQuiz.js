@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import _ from 'lodash';
 import { putUpdateQuizForAdmin } from '../../../../services/apiService';
+import { useTranslation } from 'react-i18next';
 
 const ModalUpdateQuiz = (props) => {
     const { show, setShow, dataUpdate, setDataUpdate } = props;
@@ -15,7 +16,7 @@ const ModalUpdateQuiz = (props) => {
     const [type, setType] = useState("");
     const [image, setImage] = useState("");
     const [previewImage, setPreviewImage] = useState("");
-
+    const { t } = useTranslation();
 
     useEffect(() => {
 
@@ -52,12 +53,12 @@ const ModalUpdateQuiz = (props) => {
     }
     const handleSubSmitCreateUser = async () => {
         if (!name) {
-            toast.error('Invalid name')
+            toast.error(t('modalupdatequiz.title8'))
             return;
         }
 
         if (!description) {
-            toast.error('Invalid description')
+            toast.error(t('modalupdatequiz.title9'))
             return;
         }
 
@@ -83,12 +84,12 @@ const ModalUpdateQuiz = (props) => {
                 className='modal-add-users'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Update the quiz</Modal.Title>
+                    <Modal.Title>{t('modalupdatequiz.title1')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body size>
                     {<form className="row g-3">
                         <div className="col-md-6">
-                            <label className="form-label">Name</label>
+                            <label className="form-label">{t('modalupdatequiz.title2')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -98,7 +99,7 @@ const ModalUpdateQuiz = (props) => {
                         </div>
 
                         <div className="col-md-6">
-                            <label className="form-label">Description</label>
+                            <label className="form-label">{t('modalupdatequiz.title3')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -108,19 +109,19 @@ const ModalUpdateQuiz = (props) => {
                         </div>
 
                         <div className="col-md-4">
-                            <label className="form-label">Type</label>
+                            <label className="form-label">{t('modalupdatequiz.type.title')}</label>
                             <select className="form-select"
                                 onChange={(event) => setType(event.target.value)}
                                 value={type}>
-                                <option value="EASY">EASY</option>
-                                <option value="MEDIUM">MEDIUM</option>
-                                <option value="HARD">HARD</option>
+                                <option value="EASY">{t('modalupdatequiz.type.easy')}</option>
+                                <option value="MEDIUM">{t('modalupdatequiz.type.medium')}</option>
+                                <option value="HARD">{t('modalupdatequiz.type.hard')}</option>
                             </select>
                         </div>
 
                         <div className='col-md-12'>
                             <label className='form-label label-upload' htmlFor="labelUpload" >
-                                <FcPlus />Upload File Image
+                                <FcPlus />{t('modalupdatequiz.title4')}
                             </label>
                             <input
                                 type='file'
@@ -134,17 +135,17 @@ const ModalUpdateQuiz = (props) => {
                             {previewImage ?
                                 <img src={previewImage} alt='nhin cai lol gi, bat ngo lam ak' />
                                 :
-                                <span>Preview Image</span>
+                                <span>{t('modalupdatequiz.title5')}</span>
                             }
                         </div>
                     </form>}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('modalupdatequiz.title6')}
                     </Button>
                     <Button variant="primary" onClick={handleSubSmitCreateUser}>
-                        Save
+                        {t('modalupdatequiz.title7')}
                     </Button>
                 </Modal.Footer>
             </Modal >

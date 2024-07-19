@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
+import { useTranslation } from 'react-i18next';
+
 const TableUserPaginate = (props) => {
     const { listUser, pageCount } = props;
-
-
+    const { t } = useTranslation();
     const handlePageClick = (event) => {
         props.fetchListUserWithPaginate(+event.selected + 1)
         props.setCurrentPage(+event.selected + 1)
@@ -15,11 +16,11 @@ const TableUserPaginate = (props) => {
             <table className="table table-hover table-bordered">
                 <thead>
                     <tr >
-                        <th scope="col">Id</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{t("tableuserpaginate.title1")}</th>
+                        <th scope="col">{t("tableuserpaginate.title2")}</th>
+                        <th scope="col">{t("tableuserpaginate.title3")}</th>
+                        <th scope="col">{t("tableuserpaginate.role.title")}</th>
+                        <th scope="col">{t("tableuserpaginate.action.titleaction")}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,11 +31,11 @@ const TableUserPaginate = (props) => {
                                     <td>{item.id}</td>
                                     <td>{item.email}</td>
                                     <td>{item.username}</td>
-                                    <td>{item.role}</td>
+                                    <td>{item.role === "USER" ? t('tableuserpaginate.role.user') : t('tableuserpaginate.role.admin')}</td>
                                     <td>
-                                        <button className="btn btn-outline-success" onClick={() => props.handleClickbBtnView(item)} > View</button>
-                                        <button className="btn btn-outline-warning mx-3" onClick={() => props.handleClickBtnUpdate(item)}>Update</button>
-                                        <button className="btn btn-outline-danger" onClick={() => { props.handleClickBtnDelete(item) }}>Delete</button>
+                                        <button className="btn btn-outline-success" onClick={() => props.handleClickbBtnView(item)} >{t("tableuserpaginate.action.view")}</button>
+                                        <button className="btn btn-outline-warning mx-3" onClick={() => props.handleClickBtnUpdate(item)}>{t("tableuserpaginate.action.update")}</button>
+                                        <button className="btn btn-outline-danger" onClick={() => { props.handleClickBtnDelete(item) }}>{t("tableuserpaginate.action.delete")}</button>
                                     </td>
                                 </tr>
                             )
@@ -43,20 +44,20 @@ const TableUserPaginate = (props) => {
                     {listUser && listUser.length === 0 &&
                         <tr>
                             <td colSpan={4}>
-                                Not found data
+                                {t('tableuserpaginate.title4')}
                             </td>
                         </tr>}
                 </tbody >
             </table >
             <div className='page-users'>
                 <ReactPaginate
-                    nextLabel="next >"
+                    nextLabel={t('tableuserpaginate.title5')}
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={3}
                     // setCurrentPage={1}
                     marginPagesDisplayed={2}
                     pageCount={pageCount}
-                    previousLabel="< previous"
+                    previousLabel={t('tableuserpaginate.title6')}
                     pageClassName="page-item"
                     pageLinkClassName="page-link"
                     previousClassName="page-item"

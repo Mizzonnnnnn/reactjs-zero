@@ -5,6 +5,7 @@ import { FcPlus } from "react-icons/fc";
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import _ from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 const ModalViewUser = (props) => {
     const { show, setShow, dataView } = props;
@@ -14,7 +15,7 @@ const ModalViewUser = (props) => {
     const [image, setImage] = useState("");
     const [role, setRole] = useState("USER");
     const [previewImage, setPreviewImage] = useState("");
-
+    const { t } = useTranslation()
     useEffect(() => {
         if (!_.isEmpty(dataView)) {
             setEmail(dataView.email);
@@ -48,12 +49,12 @@ const ModalViewUser = (props) => {
                 className='modal-add-users'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>View User</Modal.Title>
+                    <Modal.Title>{t('modalviewuser.title1')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body size>
                     {<form className="row g-3">
                         <div className="col-md-6">
-                            <label className="form-label">Email</label>
+                            <label className="form-label">{t('modalviewuser.title2.Email')}</label>
                             <input
                                 type="email"
                                 className="form-control"
@@ -63,7 +64,7 @@ const ModalViewUser = (props) => {
                         </div>
 
                         <div className="col-md-6">
-                            <label className="form-label">Password</label>
+                            <label className="form-label">{t('modalviewuser.title2.Password')}</label>
                             <input
                                 type="password"
                                 className="form-control"
@@ -73,7 +74,7 @@ const ModalViewUser = (props) => {
                         </div>
 
                         <div className="col-md-6">
-                            <label className="form-label">UserName</label>
+                            <label className="form-label">{t('modalviewuser.title2.UserName')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -83,20 +84,20 @@ const ModalViewUser = (props) => {
                         </div>
 
                         <div className="col-md-4">
-                            <label className="form-label">Role</label>
+                            <label className="form-label">{t('modalviewuser.title2.Role.title')}</label>
                             <select
                                 className="form-select"
                                 value={role}
                                 disabled
                             >
-                                <option value="ADMIN">ADMIN</option>
-                                <option value="USER">USER</option>
+                                <option value="ADMIN">{t('modalviewuser.title2.Role.admin')}</option>
+                                <option value="USER">{t('modalviewuser.title2.Role.user')}</option>
                             </select>
                         </div>
 
                         <div className='col-md-12'>
                             <label htmlFor="fileInput" className='form-label label-upload'>
-                                <FcPlus />Upload File Image
+                                <FcPlus />{t('modalviewuser.title2.uploadfile')}
                             </label>
                             <input
                                 type='file'
@@ -111,17 +112,17 @@ const ModalViewUser = (props) => {
                                 ?
                                 <img src={previewImage} alt='nhin cai lol gi, bat ngo lam ak' />
                                 :
-                                <span>Preview Image</span>
+                                <span>{t('modalviewuser.title2.previewimage')}</span>
                             }
                         </div>
                     </form>}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        {t('modalviewuser.title3')}
                     </Button>
                     <Button variant="primary">
-                        Save
+                        {t('modalviewuser.title4')}
                     </Button>
                 </Modal.Footer>
             </Modal >

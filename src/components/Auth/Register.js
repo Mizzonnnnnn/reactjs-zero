@@ -7,12 +7,16 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiTwotoneEye, AiTwotoneEyeInvisible } from "react-icons/ai";
 import Language from '../Header/Language';
+import { useTranslation } from 'react-i18next';
+
 const Register = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
     const [isShowPassword, setIsShowPassword] = useState(false)
+    const { t } = useTranslation();
+
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -20,26 +24,25 @@ const Register = () => {
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             );
     };
+
     const handleSubmit = async () => {
         const isValidEmail = validateEmail(email);
         if (!isValidEmail) {
-            toast.error("Invalid Email!")
+            toast.error(t('signup.ie'));
             return;
         }
         if (!password) {
-            toast.error("Invalid Password");
+            toast.error(t('signup.ip'));
+            return;
         }
         let data = await postRegister(email, username, password);
-        console.log(data);
         if (data.EC === 0) {
-            navigate('/login')
-            toast.success(data.EM)
+            navigate('/login');
+            toast.success(data.EM);
+        } else {
+            toast.error(data.EM);
         }
-
-        if (data.EC !== 0) {
-            toast.error(data.EM)
-        }
-    }
+    };
 
     const handleBackHome = () => {
         navigate('/')
@@ -47,98 +50,86 @@ const Register = () => {
     const handleBackLogin = () => {
         navigate('/login')
     }
+
     return (
         <div className="register-container">
             <div className="column left" >
                 <div className='title'>
-                    <p >
-                        Sign Up <br /> and come on in
+                    <p>
+                        {t('signup.title1')} <br /> {t('signup.title2')}
                     </p>
                 </div>
                 <div className='picture'>
                     <img src={picture} alt='' />
                 </div>
-                <div >
-                    <label className='footer' onClick={() => handleBackHome()}>@Mizzon</label>
+                <div>
+                    <label className='footer' onClick={handleBackHome}>@Mizzon</label>
                 </div>
-
             </div>
 
             <div className="column right">
                 <div className='head'>
-                    <label>Already have an account?</label>
-                    <button onClick={() => handleBackLogin()}> Login</button>
-                    <label >
+                    <label>{t('signup.title3')}</label>
+                    <button onClick={handleBackLogin}>{t('signup.login')}</button>
+                    <label>
                         <Language />
                     </label>
                 </div>
                 <div>
-                    <h2 className='title-sign'> Get better data with conversational forms, surveys, quizzes & more.</h2>
+                    <h2 className='title-sign'>{t('signup.title-sign')}</h2>
                 </div>
                 <div className='col-md-4'>
-                    <label>Email (*)</label>
+                    <label>{t('signup.email')} (*)</label>
                     <input
-                        type={"email"}
+                        type="email"
                         className='form-control'
                         value={email}
                         placeholder='bruce@wayne.com'
                         onChange={(event) => setEmail(event.target.value)}
-                    ></input>
+                    />
                 </div>
                 <div className='col-md-4'>
-                    <label>UserName</label>
+                    <label>{t('signup.username')}</label>
                     <input
-                        type={"text"}
+                        type="text"
                         className='form-control'
                         value={username}
                         placeholder="zxy"
                         onChange={(event) => setUsername(event.target.value)}
-                    ></input>
+                    />
                 </div>
 
-                <div className='col-md-4 pass-group' >
-                    <label>Password (*)</label>
+                <div className='col-md-4 pass-group'>
+                    <label>{t('signup.password')} (*)</label>
                     <input
                         type={isShowPassword ? "text" : "password"}
                         className='form-control'
                         value={password}
-                        placeholder='At least 8 characters'
+                        placeholder={t('signup.al')}
                         onChange={(event) => setPassword(event.target.value)}
                     />
                     {
                         isShowPassword ?
-                            <span className='icons-eye'
-                                onClick={() => setIsShowPassword(false)}
-                            >
-
+                            <span className='icons-eye' onClick={() => setIsShowPassword(false)}>
                                 <AiTwotoneEye />
                             </span>
                             :
-                            <span className='icons-eye'
-                                onClick={() => setIsShowPassword(true)}
-                            >
+                            <span className='icons-eye' onClick={() => setIsShowPassword(true)}>
                                 <AiTwotoneEyeInvisible />
                             </span>
-
                     }
-
                 </div>
                 <div className='col-md-4'>
-                    <button
-                        className='btn-submit'
-                        onClick={handleSubmit}
-                    >
-                        Create my free account
+                    <button className='btn-submit' onClick={handleSubmit}>
+                        {t('signup.create')}
                     </button>
                 </div>
                 <div className='back text-center'>
-                    <span onClick={() => handleBackHome()}>&#60;&#60; Go to Homepage</span>
+                    <span onClick={handleBackHome}>&#60;&#60; {t('signup.goToHomepage')}</span>
                 </div>
-
             </div>
-        </div >
+        </div>
     )
 }
-
 
 export default Register;

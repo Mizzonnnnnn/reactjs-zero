@@ -6,9 +6,11 @@ import { Outlet } from "react-router-dom";
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { NavDropdown } from "react-bootstrap";
 import Language from "../Header/Language";
+import { useTranslation } from "react-i18next";
 
 const Admin = (props) => {
-    const [collapsed, setCollapsed] = useState(false)
+    const [collapsed, setCollapsed] = useState(false);
+    const { t, i18n } = useTranslation()
     return (
         <div className="admin-container">
             <div className="admin-sidebar">
@@ -24,9 +26,9 @@ const Admin = (props) => {
 
                     <div className="rightside">
                         <Language />
-                        <NavDropdown title="Setting" id="basic-nav-dropdown" >
-                            <NavDropdown.Item>  Profile</NavDropdown.Item>
-                            <NavDropdown.Item>Log out</NavDropdown.Item>
+                        <NavDropdown title={i18n.language === 'vi' ? "Cài đặt" : "Setting"} id="basic-nav-dropdown" >
+                            <NavDropdown.Item>{t('admin.title1.Profile')}</NavDropdown.Item>
+                            <NavDropdown.Item>{t('admin.title1.Logout')}</NavDropdown.Item>
                         </NavDropdown>
                     </div>
 

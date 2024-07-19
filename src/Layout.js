@@ -7,10 +7,7 @@ import DashBoard from './components/Admin/Content/DashBoard';
 import Login from './components/Auth/Login';
 import { ToastContainer } from 'react-toastify';
 import { Suspense } from 'react';
-import {
-    Routes,
-    Route
-} from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import App from './App';
 import Register from './components/Auth/Register';
 import ListQuiz from './components/User/ListQuiz';
@@ -40,7 +37,7 @@ const Layout = (props) => {
 
                 <Route path="/quiz/:id" element={<DetailQuiz />} />
 
-                <Route path="/admins" element={
+                <Route path="admins" element={
                     <PrivateRoute>
                         <Admin />
                     </PrivateRoute>

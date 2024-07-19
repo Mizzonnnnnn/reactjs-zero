@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link, NavLink } from "react-router-dom";
 import { getDataQuiz, postSubmitQuiz } from "../../services/apiService";
 import _ from "lodash";
 import './DetailQuiz.scss';
 import Question from "./Question";
 import ModalResultUser from "./ModalResultUser";
 import RightContent from "./RightContent/RightContent";
+import { useTranslation } from "react-i18next";
+import { Breadcrumb } from "react-bootstrap";
 
 const DetailQuiz = () => {
     const params = useParams();
@@ -15,6 +17,7 @@ const DetailQuiz = () => {
     const [index, setIndex] = useState(0);
     const [isShowMoalResult, setIsShowMoalResult] = useState(false)
     const [dataModalResult, setDataModalResult] = useState({})
+    const { t } = useTranslation();
 
     const fetchQuestions = useCallback(async () => {
         const res = await getDataQuiz(quizId);
@@ -85,7 +88,6 @@ const DetailQuiz = () => {
     }
 
     const handleFinshQuiz = async () => {
-        console.log("data before submit: ", dataQuiz);
         let payload = {
             quizId: +quizId,
             answers: []
@@ -109,7 +111,6 @@ const DetailQuiz = () => {
             payload.answers = answers;
 
             let res = await postSubmitQuiz(payload);
-            console.log('check res: ', res);
             if (res && res.EC === 0) {
                 setDataModalResult({
                     countCorrect: res.DT.countCorrect,
@@ -118,53 +119,73 @@ const DetailQuiz = () => {
                 })
                 setIsShowMoalResult(true)
             } else {
-                alert("Something wrong.....")
+                alert(t('detailquiz.error'))
             }
         }
     }
 
     return (
-        <div className="detail-quiz-container">
-            <div className="left-content">
-                <div className="title">
-                    Quiz {quizId} {location?.state?.quizTitle}
+        <>
+            <div className="quiz-detail-new-header">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <NavLink to="/">{t('detailquiz.home')}</NavLink>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <NavLink to="/users">{t('detailquiz.user')}</NavLink>
+                        </li>
+                        <Breadcrumb.Item active>
+                            {t('detailquiz.qu')}
+                        </Breadcrumb.Item>
+
+                    </ol>
+                </nav>
+            </div>
+            <div className="detail-quiz-container">
+                <div className="left-content">
+                    <div className="title">
+                        <>
+                            {t('detailquiz.quiz')} {quizId} {location?.state?.quizTitle}
+                        </>
+                    </div>
                     <hr />
+                    <div className="q-content">
+                        <Question
+                            data={
+                                dataQuiz && dataQuiz.length > 0 ?
+                                    dataQuiz[index] : []
+                            }
+
+                            handleCheckbox={handleCheckbox}
+                            index={index} />
+                    </div>
+                    <div className="footer">
+                        <button className="btn btn-primary" onClick={() => handlePrev()}>{t('detailquiz.prev')}</button>
+                        <button className="btn btn-secondary" onClick={() => handleNext()}>{t('detailquiz.next')}</button>
+                        <button className="btn btn-warning" onClick={() => handleFinshQuiz()}>{t('detailquiz.finish')}</button>
+                    </div>
                 </div>
 
-                <div className="q-content">
-                    <Question
-                        data={
-                            dataQuiz && dataQuiz.length > 0 ?
-                                dataQuiz[index] : []
-                        }
-
-                        handleCheckbox={handleCheckbox}
-                        index={index} />
+                <div className="right-content">
+                    <RightContent
+                        dataQuiz={dataQuiz}
+                        handleFinshQuiz={handleFinshQuiz}
+                        show={isShowMoalResult}
+                        setIndex={setIndex}
+                    />
                 </div>
-                <div className="footer">
-                    <button className="btn btn-primary" onClick={() => handlePrev()}>Prev</button>
-                    <button className="btn btn-secondary" onClick={() => handleNext()}>Next</button>
-                    <button className="btn btn-warning" onClick={() => handleFinshQuiz()}>Finish</button>
+                <div>
+                    <ModalResultUser
+                        show={isShowMoalResult}
+                        setShow={setIsShowMoalResult}
+                        dataModalResult={dataModalResult}
+                        setDataModalResult={setDataModalResult}
+                    />
                 </div>
-            </div>
+            </div >
+        </>
 
-            <div className="right-content">
-                <RightContent
-                    dataQuiz={dataQuiz}
-                    handleFinshQuiz={handleFinshQuiz}
-                    show={isShowMoalResult}
-                    setIndex={setIndex}
-                />
-            </div>
-            <div>
-                <ModalResultUser
-                    show={isShowMoalResult}
-                    setShow={setIsShowMoalResult}
-                    dataModalResult={dataModalResult}
-                    setDataModalResult={setDataModalResult}
-                />
-            </div>
-        </div >
     )
 }
 

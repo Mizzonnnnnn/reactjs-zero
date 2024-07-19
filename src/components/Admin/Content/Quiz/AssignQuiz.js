@@ -2,18 +2,18 @@ import Select from 'react-select';
 import { useState, useEffect } from 'react';
 import { getAllQuizForAdmin, getAllUser, postAssignQuiz } from '../../../../services/apiService';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const AssignQuiz = (props) => {
     const [selectedQuiz, setSelectedQuiz] = useState(null);
     const [listQuiz, setListQuiz] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [listUser, setListUser] = useState([]);
-
+    const { t } = useTranslation();
     useEffect(() => {
         fetchQuiz();
         fetchUser();
     }, []);
-
 
 
     const fetchQuiz = async () => {
@@ -54,23 +54,23 @@ const AssignQuiz = (props) => {
     return (
         <div className="assign-quiz-container row">
             <div className='form-group col-6'>
-                <label className='mb-1'>Select Quiz</label>
+                <label className='mb-1'>{t('assignquiz.title1')}</label>
                 <Select
                     value={selectedQuiz}
                     onChange={setSelectedQuiz}
                     options={listQuiz}
-                    placeholder={"Select..."}
+                    placeholder={t('assignquiz.title2')}
                     isClearable={true}
                 />
             </div>
 
             <div className='form-group col-6'>
-                <label className='mb-1'>Select User</label>
+                <label className='mb-1'>{t('assignquiz.title3')}</label>
                 <Select
                     value={selectedUser}
                     onChange={setSelectedUser}
                     options={listUser}
-                    placeholder={"Select..."}
+                    placeholder={t('assignquiz.title2')}
                     isClearable={true}
                 />
             </div>
@@ -78,7 +78,7 @@ const AssignQuiz = (props) => {
                 <button
                     className='btn btn-warning'
                     onClick={() => handleAssign()}
-                >Assign</button>
+                >{t('assignquiz.title4')}</button>
             </div>
         </div>
     )

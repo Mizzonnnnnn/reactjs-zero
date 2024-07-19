@@ -6,5 +6,273 @@
             "login": "Bắt đầu ngay - miễn phí",
             "user": "Làm bài quiz ngay bây giờ"
         }
+    },
+    "header": {
+        "title1": "Trang chủ",
+        "title2": "Người dùng",
+        "title3": "Quản trị viên",
+        "title4": {
+            "Setting": "Cài đặt",
+            "Profile": "Hồ sơ",
+            "Logout": "Đăng xuất"
+        },
+        "title5": {
+            "Login": "Đăng nhập",
+            "Signup": "Đăng ký"
+        }
+    },
+    "listquiz": {
+        "title1": "Câu hỏi",
+        "title2": "Bắt đầu ngay",
+        "title3": "Bạn không có bất cứ câu hỏi nào bây giờ  ..."
+    },
+    "dashboard": {
+        "title1": "Câu đố",
+        "title2": "Câu hỏi",
+        "title3": "Câu trả lời",
+        "title4": "Bảng điều khiển phân tích",
+        "title5": "Tổng số người dùng",
+        "title6": "Tổng số câu đố",
+        "title7": "Tổng số câu hỏi",
+        "title8": "Tổng số câu trả lời"
+    },
+    "manage-user": {
+        "title1": "Quản lý người dùng",
+        "title2": "Thêm người dùng mới"
+    },
+    "modalcreateuser": {
+        "title2": "Thêm người dùng mới",
+        "title3": {
+            "Email": "Email",
+            "Password": "Mật khẩu",
+            "UserName": "Tên người dùng",
+            "Role": {
+                "title": "Vai trò",
+                "user": "NGƯỜI DÙNG",
+                "admin": "QUẢN TRỊ VIÊN"
+            },
+            "uploadfile": "Tải lên hình ảnh",
+            "previewimage": "Xem trước hình ảnh"
+        }
+    },
+    "tableuserpaginate": {
+        "title1": "Id",
+        "title2": "Email",
+        "title3": "Tên người dùng",
+        "role": {
+            "title": "Vai trò",
+            "user": "NGƯỜI DÙNG",
+            "admin": "QUẢN TRỊ VIÊN"
+        },
+        "action": {
+            "titleaction": "Hoạt động",
+            "view": "Xem",
+            "update": "Cập nhật",
+            "delete": "Xóa"
+        },
+        "title4": "Không tìm thấy dữ liệu",
+        "title5": "Tiếp >",
+        "title6": "< Lùi"
+    },
+    "admin": {
+        "title1": {
+            "Setting": "Cài đặt",
+            "Profile": "Hồ sơ",
+            "Logout": "Đăng xuất"
+        }
+    },
+    "modalviewuser": {
+        "title1": "Xem Người Dùng",
+        "title2": {
+            "Email": "Email",
+            "Password": "Mật Khẩu",
+            "UserName": "Tên Người Dùng",
+            "Role": {
+                "title": "Vai Trò",
+                "user": "NGƯỜI DÙNG",
+                "admin": "QUẢN TRỊ VIÊN"
+            },
+            "uploadfile": "Tải Lên Tệp Hình Ảnh",
+            "previewimage": "Xem Trước Hình Ảnh"
+        },
+        "title3": "Đóng",
+        "title4": "Lưu"
+    },
+    "modalupdateuser": {
+        "title1": "Cập Nhật Người Dùng",
+        "title2": {
+            "Email": "Email",
+            "Password": "Mật Khẩu",
+            "UserName": "Tên Người Dùng",
+            "Role": {
+                "title": "Vai Trò",
+                "user": "NGƯỜI DÙNG",
+                "admin": "QUẢN TRỊ VIÊN"
+            },
+            "uploadfile": "Tải Lên Tệp Hình Ảnh",
+            "previewimage": "Xem Trước Hình Ảnh"
+        },
+        "title3": "Đóng",
+        "title4": "Lưu"
+    },
+    "modaldeluser": {
+        "title1": "Xác Nhận Xóa Người Dùng",
+        "title2": "Bạn có chắc chắn muốn xóa người dùng này, email = ",
+        "title3": "Không tìm thấy Email",
+        "title4": "Hủy",
+        "title5": "Xác Nhận"
+    },
+    "managequestion": {
+        "title1": "Quản Lý Câu Hỏi",
+        "title2": "Chọn Đề Thi",
+        "title3": "Chọn ...",
+        "title4": "Thêm câu hỏi:",
+        "title5": "Câu Hỏi",
+        "title6": " mô tả",
+        "title7": "Câu Trả Lời",
+        "title8": "Lưu Câu Hỏi",
+        "title9": "0 tệp được tải lên",
+        "submit": {
+            "pls": "Vui lòng chọn một Bài kiểm tra",
+            "nea": "Câu trả lời không được để trống",
+            "aq": "ở Câu hỏi",
+            "ned": "Mô tả cho Câu hỏi không được để trống",
+            "suc": "Tạo câu hỏi và câu trả lời thành công!"
+        }
+    },
+    "managequiz": {
+        "title1": "Quản Lý Đề Thi",
+        "title2": "Thêm Đề Thi Mới",
+        "title3": "Tên",
+        "title4": "Mô Tả",
+        "title5": {
+            "qt": "Loại Đề Thi...",
+            "easy": "DỄ",
+            "medium": "TRUNG BÌNH",
+            "hard": "KHÓ"
+        },
+        "title6": "Tải Lên Hình Ảnh",
+        "title7": "Lưu",
+        "title8": "Cập Nhật Câu Hỏi/Đáp Án",
+        "title9": "Phân Công Cho Người Dùng",
+        "submit": "Tên/Mô tả là bắt buộc"
+    },
+    "assignquiz": {
+        "title1": "Chọn Câu Hỏi",
+        "title2": "Chọn...",
+        "title3": "Chọn Người Dùng",
+        "title4": "Giao Phó"
+    },
+    "tablequiz": {
+        "title": "Danh sách câu hỏi",
+        "title1": "Id",
+        "title2": "Tên",
+        "title3": "Mô tả",
+        "type": {
+            "title": "Loại",
+            "easy": "Dễ",
+            "medium": "Trung bình",
+            "hard": "Khó"
+        },
+        "action": {
+            "titleaction": "Hoạt động",
+            "edit": "Sửa",
+            "delete": "Xóa"
+        }
+    },
+    "modalupdatequiz": {
+        "title1": "Cập nhật câu đố",
+        "title2": "Tên",
+        "title3": "Mô tả",
+        "type": {
+            "title": "Loại",
+            "easy": "DỄ",
+            "medium": "TRUNG BÌNH",
+            "hard": "KHÓ"
+        },
+        "title4": "Tải lên Hình ảnh",
+        "title5": "Xem trước Hình ảnh",
+        "title6": "Đóng",
+        "title7": "Lưu",
+        "title8": "Tên không hợp lệ",
+        "title9": "Mô tả không hợp lệ"
+    },
+    "modaldelquiz": {
+        "title1": "Xác nhận Xóa Người dùng",
+        "title2": "Bạn có chắc chắn muốn xóa người dùng này, id = ",
+        "title3": "Không tìm thấy Id",
+        "title4": "Hủy",
+        "title5": "Xác nhận"
+    },
+    "quizqa": {
+        "title1": "Chọn Câu đố",
+        "title2": "Câu đố...",
+        "title3": "Thêm câu hỏi:",
+        "title4": "Câu hỏi",
+        "title5": "mô tả",
+        "title6": "0 tệp được tải lên",
+        "title7": "Câu trả lời",
+        "title8": "Lưu Câu hỏi",
+        "submit": {
+            "pls": "Vui lòng chọn một Câu đố",
+            "nea": "Câu trả lời không được để trống",
+            "aq": "tại Câu hỏi",
+            "net": "Mô tả câu hỏi không được để trống"
+        }
+    },
+    "sidebar": {
+        "title1": "Bảng điều khiển",
+        "title2": "Quản lý Người dùng",
+        "title3": "Quản lý Câu đố",
+        "title4": "Quản lý Câu hỏi",
+        "title5": "Tính năng"
+    },
+    "login": {
+        "title1": "Chưa có tài khoản?",
+        "title2": "Đăng ký",
+        "signUp": "Đăng ký",
+        "hello": "Xin chào, ai đây?",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "forgotPassword": "Quên mật khẩu?",
+        "loginToMizzon": "Đăng nhập vào Mizzon",
+        "goToHomepage": "Đi đến Trang chủ",
+        "ie": "Email không hợp lệ",
+        "ip": "Mật khẩu không hợp lệ"
+    },
+    "signup": {
+        "ie": "Email không hợp lệ!",
+        "ip": "Mật khẩu không hợp lệ",
+        "title1": "Đăng ký",
+        "title2": "và vào trong",
+        "title3": "Đã có tài khoản?",
+        "login": "Đăng nhập",
+        "email": "Email",
+        "username": "Tên người dùng",
+        "password": "Mật khẩu",
+        "al": "Ít nhất 8 ký tự",
+        "create": "Tạo tài khoản miễn phí của tôi",
+        "goToHomepage": "Đi đến Trang chủ",
+        "title-sign": "Nhận dữ liệu tốt hơn với các biểu mẫu đàm thoại, khảo sát, câu đố và hơn thế nữa."
+    },
+    "detailquiz": {
+        "error": "Có gì đó không đúng.....",
+        "quiz": "Bài kiểm tra",
+        "prev": "Trước",
+        "next": "Tiếp",
+        "finish": "Hoàn thành",
+        "home": "Trang Chủ",
+        "user": "Người Dùng",
+        "qu": "Làm Bài Quiz"
+    },
+    "modalresultuser": {
+        "title1": "Kết quả của bạn...",
+        "title2": "Tổng câu hỏi: ",
+        "title3": "Tổng câu trả lời đúng: ",
+        "title4": "Hiển thị câu trả lời",
+        "title5": "Đóng"
+    },
+    "question": {
+        "title": "Câu hỏi"
     }
 }

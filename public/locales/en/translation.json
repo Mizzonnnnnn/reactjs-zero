@@ -6,5 +6,273 @@
             "login": "Get started-it's free",
             "user": "Doing Quiz Now"
         }
+    },
+    "header": {
+        "title1": "Home",
+        "title2": "User",
+        "title3": "Admin",
+        "title4": {
+            "Setting": "Setting",
+            "Profile": "Profile",
+            "Logout": "Logout"
+        },
+        "title5": {
+            "Login": "Login",
+            "Signup": "Sign up"
+        }
+    },
+    "listquiz": {
+        "title1": "Quiz",
+        "title2": "Start Now",
+        "title3": "You don't have any quiz now ..."
+    },
+    "dashboard": {
+        "title1": "Quizzes",
+        "title2": "Questions",
+        "title3": "Answers",
+        "title4": "Analytics Dashboard",
+        "title5": "Total Users",
+        "title6": "Total Quizzes",
+        "title7": "Total Questions",
+        "title8": "Total Answers"
+    },
+    "manage-user": {
+        "title1": "Manage user",
+        "title2": "Add new User"
+    },
+    "modalcreateuser": {
+        "title2": "Add new User",
+        "title3": {
+            "Email": "Email",
+            "Password": "Password",
+            "UserName": "UserName",
+            "Role": {
+                "title": "Role",
+                "user": "USER",
+                "admin": "ADMIN"
+            },
+            "uploadfile": "Upload File Image",
+            "previewimage": "Preview Image"
+        }
+    },
+    "tableuserpaginate": {
+        "title1": "Id",
+        "title2": "Email",
+        "title3": "Username",
+        "role": {
+            "title": "Role",
+            "user": "USER",
+            "admin": "ADMIN"
+        },
+        "action": {
+            "titleaction": "Action",
+            "view": "View",
+            "update": "Update",
+            "delete": "Delete"
+        },
+        "title4": "Not found data",
+        "title5": "next >",
+        "title6": "< previous"
+    },
+    "admin": {
+        "title1": {
+            "Setting": "Setting",
+            "Profile": "Profile",
+            "Logout": "Logout"
+        }
+    },
+    "modalviewuser": {
+        "title1": "View User",
+        "title2": {
+            "Email": "Email",
+            "Password": "Password",
+            "UserName": "UserName",
+            "Role": {
+                "title": "Role",
+                "user": "USER",
+                "admin": "ADMIN"
+            },
+            "uploadfile": "Upload File Image",
+            "previewimage": "Preview Image"
+        },
+        "title3": "Close",
+        "title4": "Save"
+    },
+    "modalupdateuser": {
+        "title1": "Update new User",
+        "title2": {
+            "Email": "Email",
+            "Password": "Password",
+            "UserName": "UserName",
+            "Role": {
+                "title": "Role",
+                "user": "USER",
+                "admin": "ADMIN"
+            },
+            "uploadfile": "Upload File Image",
+            "previewimage": "Preview Image"
+        },
+        "title3": "Close",
+        "title4": "Save"
+    },
+    "modaldeluser": {
+        "title1": "Confirm Delete the User",
+        "title2": "Are youu sure to delete this use, email = ",
+        "title3": "Not found Email",
+        "title4": "Cancel",
+        "title5": "Confirm"
+    },
+    "managequestion": {
+        "title1": "Manage Questions",
+        "title2": "Select Quiz",
+        "title3": "Select ...",
+        "title4": "Add questions:",
+        "title5": "Question",
+        "title6": "'s description",
+        "title7": "Answer",
+        "title8": "Save Question",
+        "title9": "0 file is upload",
+        "submit": {
+            "pls": "Please choose a Quiz",
+            "nea": "Not empty Answer",
+            "aq": "at Question",
+            "ned": "Not empty description for Question",
+            "suc": "Create questions and answers succed!"
+        }
+    },
+    "managequiz": {
+        "title1": "Manage Quizes",
+        "title2": "Add New Quiz",
+        "title3": "Name",
+        "title4": "Description",
+        "title5": {
+            "qt": "Quiz type...",
+            "easy": "EASY",
+            "medium": "MEDIUM",
+            "hard": "HARD"
+        },
+        "title6": "Upload Image",
+        "title7": "Save",
+        "title8": "Update Q/A Quizzes",
+        "title9": "Assign to Users",
+        "submit": "Name/Description is required"
+    },
+    "assignquiz": {
+        "title1": "Select Quiz",
+        "title2": "Select...",
+        "title3": "Select User",
+        "title4": "Assign"
+    },
+    "tablequiz": {
+        "title": "List Quizzes: ",
+        "title1": "Id",
+        "title2": "Name",
+        "title3": "Description",
+        "type": {
+            "title": "Type",
+            "easy": "EASY",
+            "medium": "MEDIUM",
+            "hard": "HARD"
+        },
+        "action": {
+            "titleaction": "Action",
+            "edit": "Edit",
+            "delete": "Delete"
+        }
+    },
+    "modalupdatequiz": {
+        "title1": "Update the quiz",
+        "title2": "Name",
+        "title3": "Description",
+        "type": {
+            "title": "Type",
+            "easy": "EASY",
+            "medium": "MEDIUM",
+            "hard": "HARD"
+        },
+        "title4": "Upload Image",
+        "title5": "Preview Image",
+        "title6": "Close",
+        "title7": "Save",
+        "title8": "Invalid name",
+        "title9": "Invalid description"
+    },
+    "modaldelquiz": {
+        "title1": "Confirm Delete the User",
+        "title2": "Are youu sure to delete this use, id = ",
+        "title3": "Not found Id",
+        "title4": "Cancle",
+        "title5": "Confirm"
+    },
+    "quizqa": {
+        "title1": "Select Quiz",
+        "title2": "Quiz...",
+        "title3": "Add questions:",
+        "title4": "Question",
+        "title5": "'s description",
+        "title6": "0 file is upload",
+        "title7": "Answer",
+        "title8": "Save Question",
+        "submit": {
+            "pls": "Please choose a Quiz",
+            "nea": "Not empty Answer",
+            "aq": "at Question",
+            "net": "Not empty description for Question"
+        }
+    },
+    "sidebar": {
+        "title1": "Dashboard",
+        "title2": "Manage Users",
+        "title3": "Manage Quizzes",
+        "title4": "Manage Questions",
+        "title5": "Features"
+    },
+    "login": {
+        "title1": "Don't have an account yet?",
+        "title2": "Sign up",
+        "signUp": "Sign up",
+        "hello": "Hello, who's this?",
+        "email": "Email",
+        "password": "Password",
+        "forgotPassword": "Forgot password?",
+        "loginToMizzon": "Log in to Mizzon",
+        "goToHomepage": "Go to Homepage",
+        "ie": "Invalid Email!",
+        "ip": "Invalid Password"
+    },
+    "signup": {
+        "ie": "Invalid Email!",
+        "ip": "Invalid Password",
+        "title1": "Sign Up",
+        "title2": "and come on in",
+        "title3": "Already have an account?",
+        "login": "Login",
+        "email": "Email",
+        "username": "UserName",
+        "password": "Password",
+        "al": "At least 8 characters",
+        "create": "Create my free account",
+        "goToHomepage": "Go to Homepage",
+        "title-sign": "Get better data with conversational forms, surveys, quizzes & more."
+    },
+    "detailquiz": {
+        "error": "Something wrong.....",
+        "quiz": "Quiz",
+        "prev": "Prev",
+        "next": "Next",
+        "finish": "Finish",
+        "home": "Home",
+        "user": "User",
+        "qu": "Quiz"
+    },
+    "modalresultuser": {
+        "title1": "Your Result...",
+        "title2": "Total Question: ",
+        "title3": "Total Correct answers: ",
+        "title4": "Show answers",
+        "title5": "Close"
+    },
+    "question": {
+        "title": "Question"
     }
 }

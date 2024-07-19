@@ -5,22 +5,21 @@ import { FcPlus } from "react-icons/fc";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
-
 import { postCreateNewUser } from '../../../services/apiService';
+import { useTranslation } from 'react-i18next';
 
 const ModalCreateUser = (props) => {
     const { show, setShow } = props;
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [image, setImage] = useState("");
     const [role, setRole] = useState("USER");
     const [previewImage, setPreviewImage] = useState("");
+    const { t } = useTranslation();
 
     const handleClose = () => {
         // khi bam close thi nó sẽ làm rỗng dữ liệu
-
         setEmail("");
         setPassword("");
         setUsername("");
@@ -75,10 +74,6 @@ const ModalCreateUser = (props) => {
 
     return (
         <>
-            <Button variant="primary" onClick={show} hidden>
-                Launch demo modal
-            </Button>
-
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -87,12 +82,12 @@ const ModalCreateUser = (props) => {
                 className='modal-add-users'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add new User</Modal.Title>
+                    <Modal.Title>{t('modalcreateuser.title2')}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body size>
                     {<form className="row g-3">
                         <div className="col-md-6">
-                            <label className="form-label">Email</label>
+                            <label className="form-label">{t('modalcreateuser.title3.Email')}</label>
                             <input
                                 type="email"
                                 className="form-control"
@@ -102,7 +97,7 @@ const ModalCreateUser = (props) => {
                         </div>
 
                         <div className="col-md-6">
-                            <label className="form-label">Password</label>
+                            <label className="form-label">{t('modalcreateuser.title3.Password')}</label>
                             <input
                                 type="password"
                                 className="form-control"
@@ -122,18 +117,18 @@ const ModalCreateUser = (props) => {
                         </div>
 
                         <div className="col-md-4">
-                            <label className="form-label">Role</label>
+                            <label className="form-label">{t('modalcreateuser.title3.Role.title')}</label>
                             <select className="form-select"
                                 onChange={(event) => setRole(event.target.value)}
                                 value={role}>
-                                <option value="ADMIN">ADMIN</option>
-                                <option value="USER">USER</option>
+                                <option value="ADMIN">{t('modalcreateuser.title3.Role.user')}</option>
+                                <option value="USER">{t('modalcreateuser.title3.Role.admin')}</option>
                             </select>
                         </div>
 
                         <div className='col-md-12'>
                             <label htmlFor="fileInput" className='form-label label-upload'>
-                                <FcPlus />Upload File Image
+                                <FcPlus />{t('modalcreateuser.title3.uploadfile')}
                             </label>
                             <input
                                 type='file'
@@ -148,7 +143,7 @@ const ModalCreateUser = (props) => {
                                 ?
                                 <img src={previewImage} alt='nhin cai lol gi bat ngo lam ak' />
                                 :
-                                <span>Preview Image</span>
+                                <span>{t('modalcreateuser.title3.previewimage')}</span>
                             }
                         </div>
 

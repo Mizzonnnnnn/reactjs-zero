@@ -2,11 +2,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { delDeleteUser } from '../../../services/apiService';
 import { toast } from 'react-toastify';
-
+import { useTranslation } from 'react-i18next';
 
 const ModalDeleteUser = (props) => {
     const { show, setShow, dataDelete } = props;
-
+    const { t } = useTranslation()
     const handleClose = () => {
         setShow(false);
     };
@@ -32,15 +32,15 @@ const ModalDeleteUser = (props) => {
                 backdrop="static"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Confirm Delete the User</Modal.Title>
+                    <Modal.Title>{t('modaldeluser.title1')}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Are youu sure to delete this use, email = <b>{dataDelete && dataDelete.email ? dataDelete.email : "Not found Email"}</b> </Modal.Body>
+                <Modal.Body>{t('modaldeluser.title2')}<b>{dataDelete && dataDelete.email ? dataDelete.email : t('modaldeluser.title3')}</b> </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        cancel
+                        {t('modaldeluser.title4')}
                     </Button>
                     <Button variant="primary" onClick={handleSubSmitDeleteUser}>
-                        Confirm
+                        {t('modaldeluser.title5')}
                     </Button>
                 </Modal.Footer>
             </Modal>

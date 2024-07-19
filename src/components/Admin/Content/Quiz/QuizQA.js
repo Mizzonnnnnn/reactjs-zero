@@ -9,7 +9,7 @@ import _ from 'lodash';
 import Lightbox from "react-awesome-lightbox";
 import { getQuizWithQA, getAllQuizForAdmin, postUpsertQA } from '../../../../services/apiService';
 import { toast } from 'react-toastify';
-
+import { useTranslation } from 'react-i18next';
 const QuizQA = (props) => {
     const initQuestion = [
         {
@@ -34,7 +34,7 @@ const QuizQA = (props) => {
     const [selectedQuiz, setSelectedQuiz] = useState(null);
     const [isPreviewImage, setIsPreviewImage] = useState(false);
     const [listQuiz, setListQuiz] = useState([]);
-
+    const { t } = useTranslation();
     useEffect(() => {
         fetchQuiz();
     }, []);
@@ -65,7 +65,7 @@ const QuizQA = (props) => {
             }
         }
     }, [selectedQuiz]);
-    
+
     useEffect(() => {
         if (selectedQuiz && selectedQuiz) {
             fetchQuizWithQA();
@@ -250,17 +250,17 @@ const QuizQA = (props) => {
         <div className="questions-container">
             <div className="add-new-question ">
                 <div className='form-group'>
-                    <label>Select Quiz</label>
+                    <label>{t('quizqa.title1')}</label>
                     <Select
                         value={selectedQuiz}
                         onChange={setSelectedQuiz}
                         options={listQuiz}
-                        placeholder={"Quiz..."}
+                        placeholder={t('quizqa.title2')}
                         isClearable={true}
                     />
                 </div>
 
-                <div className='mt-4'>Add questions: </div>
+                <div className='mt-4'>{t('quizqa.title3')} </div>
                 {questions && questions.length > 0 && questions.map((question, index) => (
                     <div key={question.id} className='q-main mb-4'>
                         <div className='questions-content'>
@@ -272,7 +272,7 @@ const QuizQA = (props) => {
                                     value={question.description}
                                     onChange={(event) => handleOnChange('QUESTION', question.id, event.target.value)}
                                 />
-                                <label>Question {index + 1} 's description</label>
+                                <label>{t('quizqa.title4')} {index + 1} {t('quizqa.title5')}</label>
                             </div>
 
                             <div className='group-upload'>
@@ -282,7 +282,7 @@ const QuizQA = (props) => {
                                 <span className='upload'>
                                     {question.imageName ?
                                         <span className='uploadName' onClick={() => handlePreviewImage(question.id)}>{question.imageName}</span>
-                                        : "0 file is upload"
+                                        : t('quizqa.title6')
                                     }
                                 </span>
                                 <input
@@ -325,7 +325,7 @@ const QuizQA = (props) => {
                                         placeholder="description answer"
                                         onChange={(event) => handleAnswerQuestion('INPUT', answer.id, question.id, event.target.value)}
                                     />
-                                    <label>Answer {index + 1}</label>
+                                    <label>{t('quizqa.title7')} {index + 1}</label>
                                 </div>
 
                                 <div className='btn-group'>
@@ -355,7 +355,7 @@ const QuizQA = (props) => {
                             className='btn btn-success'
                             onClick={handleSubmitQuestionForQuiz}
                         >
-                            Save Question
+                            {t('quizqa.title8')}
                         </button>
                     </div>
                 )}
